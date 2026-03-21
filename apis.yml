@@ -1,0 +1,7 @@
+aid: thermo-fisher-scientific
+url: https://raw.githubusercontent.com/api-evangelist/thermo-fisher-scientific/refs/heads/main/apis.yml
+modified: '2026-03-21'
+apis: []
+common:
+  - type: Website
+    url: https://www.thermo-fisher-scientific.com
