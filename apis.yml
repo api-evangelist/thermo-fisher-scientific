@@ -1,7 +1,12 @@
 aid: thermo-fisher-scientific
-url: https://raw.githubusercontent.com/api-evangelist/thermo-fisher-scientific/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/thermo-fisher-scientific/refs/heads/main/apis.yml
 modified: '2026-03-21'
 apis: []
 common:
   - type: Website
     url: https://www.thermo-fisher-scientific.com
+description: >-
+  Thermo Fisher Scientific is the world leader in serving science, providing analytical
+  instruments, life sciences solutions, specialty diagnostics, laboratory products,
+  and biopharma services.
