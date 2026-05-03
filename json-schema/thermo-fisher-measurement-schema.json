@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/thermo-fisher-scientific/blob/main/json-schema/thermo-fisher-measurement-schema.json",
+  "title": "Thermo Fisher NanoDrop Measurement",
+  "description": "A UV-Vis spectrophotometric measurement result from the Thermo Scientific NanoDrop Ultra instrument.",
+  "type": "object",
+  "required": ["measurement_id", "method", "timestamp"],
+  "properties": {
+    "measurement_id": {
+      "type": "string",
+      "description": "Unique measurement identifier."
+    },
+    "sample_id": {
+      "type": "string",
+      "description": "Sample identifier associated with this measurement."
+    },
+    "sample_name": {
+      "type": "string",
+      "description": "Sample display name."
+    },
+    "method": {
+      "type": "string",
+      "description": "Measurement method used (e.g., DNA-50, Protein A280, Custom)."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the measurement was performed."
+    },
+    "operator": {
+      "type": "string",
+      "description": "Operator who performed the measurement."
+    },
+    "concentration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Calculated concentration in ng/µL or µg/mL."
+    },
+    "unit": {
+      "type": "string",
+      "description": "Concentration unit (ng/µL, µg/mL, etc.)."
+    },
+    "a260": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Absorbance at 260 nm."
+    },
+    "a280": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Absorbance at 280 nm."
+    },
+    "a260_a280_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "description": "A260/A280 purity ratio. ~1.8 indicates pure DNA; ~2.0 indicates pure RNA."
+    },
+    "a260_a230_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "description": "A260/A230 purity ratio. Values between 2.0-2.2 indicate high purity."
+    },
+    "spectrum": {
+      "type": "array",
+      "description": "Full UV-Vis absorbance spectrum.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "wavelength": {
+            "type": "number",
+            "description": "Wavelength in nm."
+          },
+          "absorbance": {
+            "type": "number",
+            "description": "Absorbance value."
+          }
+        }
+      }
+    }
+  }
+}

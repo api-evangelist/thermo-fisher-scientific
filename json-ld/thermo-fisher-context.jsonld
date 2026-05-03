@@ -1,0 +1,74 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "tfs": "https://www.thermofisher.com/ontology/",
+    "bio": "http://purl.obolibrary.org/obo/",
+    "Sample": {
+      "@id": "tfs:LabSample",
+      "@context": {
+        "identity": "https://schema.org/identifier",
+        "description": "https://schema.org/description",
+        "status": "https://schema.org/status",
+        "sampled_date": "https://schema.org/dateCreated",
+        "customer": {
+          "@id": "https://schema.org/customer",
+          "@type": "@id"
+        },
+        "product": {
+          "@id": "https://schema.org/about",
+          "@type": "@id"
+        },
+        "analysis": {
+          "@id": "tfs:analysis",
+          "@type": "@id"
+        },
+        "due_date": "https://schema.org/expires"
+      }
+    },
+    "Result": {
+      "@id": "tfs:TestResult",
+      "@context": {
+        "sample_id": {
+          "@id": "tfs:fromSample",
+          "@type": "@id"
+        },
+        "test": "https://schema.org/name",
+        "component": "https://schema.org/additionalType",
+        "result_value": "https://schema.org/value",
+        "units": "https://schema.org/unitText",
+        "status": "https://schema.org/status",
+        "entered_on": "https://schema.org/dateCreated",
+        "entered_by": "https://schema.org/agent"
+      }
+    },
+    "NanoDropMeasurement": {
+      "@id": "tfs:SpectrophotometricMeasurement",
+      "@context": {
+        "measurement_id": "https://schema.org/identifier",
+        "sample_id": {
+          "@id": "tfs:fromSample",
+          "@type": "@id"
+        },
+        "method": "https://schema.org/measurementTechnique",
+        "timestamp": "https://schema.org/dateCreated",
+        "operator": "https://schema.org/agent",
+        "concentration": {
+          "@id": "tfs:concentration",
+          "@type": "https://schema.org/QuantitativeValue"
+        },
+        "a260": {
+          "@id": "tfs:absorbanceAt260nm",
+          "@type": "https://schema.org/QuantitativeValue"
+        },
+        "a280": {
+          "@id": "tfs:absorbanceAt280nm",
+          "@type": "https://schema.org/QuantitativeValue"
+        },
+        "a260_a280_ratio": {
+          "@id": "tfs:purityRatio260280",
+          "@type": "https://schema.org/QuantitativeValue"
+        }
+      }
+    }
+  }
+}

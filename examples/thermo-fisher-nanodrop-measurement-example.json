@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "http://192.168.1.100:8080/api/measure",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "method": "DNA-50",
+      "sample_id": "SMP-DNA-001",
+      "sample_name": "Genomic DNA Extract - Patient 001",
+      "operator": "lab_tech_1"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "measurement_id": "M-2026050300142",
+      "sample_id": "SMP-DNA-001",
+      "sample_name": "Genomic DNA Extract - Patient 001",
+      "method": "DNA-50",
+      "timestamp": "2026-05-03T10:14:22Z",
+      "operator": "lab_tech_1",
+      "concentration": 185.4,
+      "unit": "ng/µL",
+      "a260": 3.708,
+      "a280": 1.960,
+      "a260_a280_ratio": 1.89,
+      "a260_a230_ratio": 2.12,
+      "spectrum": [
+        { "wavelength": 220, "absorbance": 4.82 },
+        { "wavelength": 230, "absorbance": 1.748 },
+        { "wavelength": 240, "absorbance": 2.214 },
+        { "wavelength": 250, "absorbance": 3.021 },
+        { "wavelength": 260, "absorbance": 3.708 },
+        { "wavelength": 270, "absorbance": 3.291 },
+        { "wavelength": 280, "absorbance": 1.960 },
+        { "wavelength": 290, "absorbance": 0.847 },
+        { "wavelength": 300", "absorbance": 0.312 }
+      ]
+    }
+  }
+}

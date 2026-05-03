@@ -1,0 +1,303 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Thermo Fisher Scientific Lab Data Management"
+  description: "Workflow capability for laboratory data management combining SampleManager LIMS and NanoDrop Ultra spectrophotometer APIs. Covers sample lifecycle, result entry, instrument measurements, and LIMS integration for life science laboratories."
+  tags:
+    - Life Sciences
+    - Laboratory
+    - LIMS
+    - Spectrophotometry
+    - Sample Management
+    - Automation
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      SAMPLEMANAGER_TOKEN: SAMPLEMANAGER_TOKEN
+      NANODROP_HOST: NANODROP_HOST
+
+capability:
+  consumes:
+    - import: samplemanager
+      location: ./shared/samplemanager-lims.yaml
+    - import: nanodrop
+      location: ./shared/nanodrop-ultra.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: thermo-fisher-lab-api
+      description: "Unified REST API for Thermo Fisher Scientific lab data management workflows."
+      resources:
+        - path: /v1/samples
+          name: samples
+          description: "Laboratory sample management."
+          operations:
+            - method: GET
+              name: list-samples
+              description: "List laboratory samples from SampleManager LIMS."
+              call: "samplemanager.get-samples"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/samples/{sampleId}
+          name: sample
+          description: "Individual sample data."
+          operations:
+            - method: GET
+              name: get-sample
+              description: "Get details for a specific laboratory sample."
+              call: "samplemanager.get-sample-by-id"
+              with:
+                sampleId: "rest.sampleId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/samples/{sampleId}/results
+          name: sample-results
+          description: "Test results for a sample."
+          operations:
+            - method: GET
+              name: get-sample-results
+              description: "Get test results for a specific sample."
+              call: "samplemanager.get-sample-results"
+              with:
+                sampleId: "rest.sampleId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/results
+          name: results
+          description: "Submit test results."
+          operations:
+            - method: POST
+              name: submit-results
+              description: "Submit test results to SampleManager LIMS."
+              call: "samplemanager.submit-results"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/entities/{entity}
+          name: entities
+          description: "Browse SampleManager entities."
+          operations:
+            - method: GET
+              name: browse-entity
+              description: "Browse SampleManager entity records."
+              call: "samplemanager.browse-entity"
+              with:
+                entity: "rest.entity"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/workflows/{workflowName}/trigger
+          name: workflow-trigger
+          description: "Trigger laboratory workflows."
+          operations:
+            - method: POST
+              name: trigger-workflow
+              description: "Trigger a SampleManager workflow."
+              call: "samplemanager.trigger-workflow"
+              with:
+                workflowName: "rest.workflowName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/instrument/status
+          name: instrument-status
+          description: "NanoDrop instrument status."
+          operations:
+            - method: GET
+              name: get-instrument-status
+              description: "Check NanoDrop Ultra instrument readiness."
+              call: "nanodrop.get-instrument-status"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/spectrophotometry/measurements
+          name: spectrophotometry-measurements
+          description: "NanoDrop spectrophotometric measurements."
+          operations:
+            - method: GET
+              name: list-measurements
+              description: "List stored NanoDrop measurements."
+              call: "nanodrop.get-measurements"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: perform-measurement
+              description: "Perform a NanoDrop measurement."
+              call: "nanodrop.perform-measurement"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/spectrophotometry/measurements/{measurementId}
+          name: spectrophotometry-measurement
+          description: "Individual NanoDrop measurement with spectrum."
+          operations:
+            - method: GET
+              name: get-measurement
+              description: "Get full measurement data including absorbance spectrum."
+              call: "nanodrop.get-measurement-by-id"
+              with:
+                measurementId: "rest.measurementId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/spectrophotometry/export
+          name: spectrophotometry-export
+          description: "Export NanoDrop measurement data."
+          operations:
+            - method: POST
+              name: export-measurements
+              description: "Export NanoDrop data for LIMS integration."
+              call: "nanodrop.export-measurements"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: thermo-fisher-lab-mcp
+      transport: http
+      description: "MCP server for AI-assisted laboratory data management using Thermo Fisher Scientific APIs."
+      tools:
+        - name: lims-list-samples
+          description: "List laboratory samples from SampleManager LIMS with optional status and date filtering."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "samplemanager.get-samples"
+          outputParameters:
+            - type: array
+              mapping: "$.samples"
+
+        - name: lims-get-sample
+          description: "Get details for a specific laboratory sample by identity or barcode."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "samplemanager.get-sample-by-id"
+          with:
+            sampleId: "tools.sampleId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: lims-get-sample-results
+          description: "Get all analytical test results for a specific laboratory sample."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "samplemanager.get-sample-results"
+          with:
+            sampleId: "tools.sampleId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: lims-submit-results
+          description: "Submit analytical test results for samples in SampleManager LIMS."
+          hints:
+            readOnly: false
+          call: "samplemanager.submit-results"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: lims-browse-entity
+          description: "Browse any SampleManager LIMS entity type (SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "samplemanager.browse-entity"
+          with:
+            entity: "tools.entity"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: lims-trigger-workflow
+          description: "Trigger a named automated workflow in SampleManager LIMS."
+          hints:
+            readOnly: false
+          call: "samplemanager.trigger-workflow"
+          with:
+            workflowName: "tools.workflowName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: nanodrop-get-status
+          description: "Check the operational status and readiness of the NanoDrop Ultra spectrophotometer."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nanodrop.get-instrument-status"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: nanodrop-perform-measurement
+          description: "Perform a UV-Vis spectrophotometric measurement on loaded sample (DNA, RNA, protein quantification)."
+          hints:
+            readOnly: false
+          call: "nanodrop.perform-measurement"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: nanodrop-list-measurements
+          description: "List stored NanoDrop Ultra measurements with concentration, purity ratios, and spectra."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nanodrop.get-measurements"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: nanodrop-get-measurement
+          description: "Get full NanoDrop measurement data including complete UV-Vis absorbance spectrum."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nanodrop.get-measurement-by-id"
+          with:
+            measurementId: "tools.measurementId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: nanodrop-get-methods
+          description: "List available measurement methods on the NanoDrop Ultra (DNA-50, RNA-40, Protein A280, etc.)."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nanodrop.get-methods"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: nanodrop-export-data
+          description: "Export NanoDrop Ultra measurements in JSON, CSV, or XML format for LIMS or ELN integration."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nanodrop.export-measurements"
+          outputParameters:
+            - type: object
+              mapping: "$."

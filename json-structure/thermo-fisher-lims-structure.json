@@ -1,0 +1,51 @@
+{
+  "name": "Thermo Fisher Scientific API Structure",
+  "description": "Structural documentation for Thermo Fisher Scientific API resources including SampleManager LIMS and NanoDrop instrument data.",
+  "entities": [
+    {
+      "name": "Sample",
+      "description": "A laboratory sample in the SampleManager LIMS system.",
+      "fields": [
+        { "name": "identity", "type": "string", "required": true, "description": "Unique sample identity/barcode." },
+        { "name": "description", "type": "string", "required": false, "description": "Sample description." },
+        { "name": "status", "type": "string (A|C|X|L)", "required": false, "description": "Sample status." },
+        { "name": "sampled_date", "type": "string (date)", "required": false, "description": "Collection/receipt date." },
+        { "name": "customer", "type": "string", "required": false, "description": "Associated customer identity." },
+        { "name": "product", "type": "string", "required": false, "description": "Associated product identity." },
+        { "name": "analysis", "type": "string", "required": false, "description": "Assigned analysis template." },
+        { "name": "due_date", "type": "string (date)", "required": false, "description": "Results due date." }
+      ]
+    },
+    {
+      "name": "Result",
+      "description": "A test result in the SampleManager LIMS system.",
+      "fields": [
+        { "name": "sample_id", "type": "string", "required": false, "description": "Parent sample identity." },
+        { "name": "test", "type": "string", "required": false, "description": "Test identity." },
+        { "name": "component", "type": "string", "required": false, "description": "Component being measured." },
+        { "name": "result_value", "type": "string", "required": false, "description": "Result value." },
+        { "name": "units", "type": "string", "required": false, "description": "Unit of measurement." },
+        { "name": "status", "type": "string", "required": false, "description": "Result status code." },
+        { "name": "entered_on", "type": "string (date-time)", "required": false, "description": "Result entry timestamp." },
+        { "name": "entered_by", "type": "string", "required": false, "description": "User who entered the result." }
+      ]
+    },
+    {
+      "name": "NanoDropMeasurement",
+      "description": "A UV-Vis spectrophotometric measurement from the NanoDrop Ultra instrument.",
+      "fields": [
+        { "name": "measurement_id", "type": "string", "required": true, "description": "Unique measurement ID." },
+        { "name": "sample_id", "type": "string", "required": false, "description": "Sample identifier." },
+        { "name": "method", "type": "string", "required": true, "description": "Measurement method." },
+        { "name": "timestamp", "type": "string (date-time)", "required": true, "description": "Measurement timestamp." },
+        { "name": "concentration", "type": "number", "required": false, "description": "Calculated concentration." },
+        { "name": "unit", "type": "string", "required": false, "description": "Concentration unit." },
+        { "name": "a260", "type": "number", "required": false, "description": "Absorbance at 260 nm." },
+        { "name": "a280", "type": "number", "required": false, "description": "Absorbance at 280 nm." },
+        { "name": "a260_a280_ratio", "type": "number", "required": false, "description": "Purity ratio A260/A280." },
+        { "name": "a260_a230_ratio", "type": "number", "required": false, "description": "Purity ratio A260/A230." },
+        { "name": "spectrum", "type": "array", "required": false, "description": "Full absorbance spectrum." }
+      ]
+    }
+  ]
+}

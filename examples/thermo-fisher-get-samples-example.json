@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://{server}:56105/smpwcfrestvgsm/mobile/samples",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    },
+    "params": {
+      "status": "A",
+      "from_date": "2026-05-01",
+      "to_date": "2026-05-03",
+      "pagesize": 25,
+      "page": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "total": 3,
+      "page": 1,
+      "pagesize": 25,
+      "samples": [
+        {
+          "identity": "SMP-2026-001234",
+          "description": "Water Sample - Site A",
+          "status": "A",
+          "sampled_date": "2026-05-01",
+          "customer": "ENVIRO-CORP-01",
+          "product": "WATER",
+          "analysis": "WATER-FULL",
+          "due_date": "2026-05-08",
+          "login_date": "2026-05-01T09:15:00Z",
+          "logged_in_by": "jsmith"
+        },
+        {
+          "identity": "SMP-2026-001235",
+          "description": "Soil Sample - Site B",
+          "status": "A",
+          "sampled_date": "2026-05-01",
+          "customer": "ENVIRO-CORP-01",
+          "product": "SOIL",
+          "analysis": "SOIL-METALS",
+          "due_date": "2026-05-10",
+          "login_date": "2026-05-01T10:30:00Z",
+          "logged_in_by": "jsmith"
+        }
+      ]
+    }
+  }
+}

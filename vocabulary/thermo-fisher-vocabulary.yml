@@ -1,0 +1,161 @@
+vocabulary:
+  provider: Thermo Fisher Scientific
+  description: >-
+    Vocabulary and taxonomy for Thermo Fisher Scientific laboratory API products,
+    covering LIMS operations, spectrophotometry, life science workflows, and
+    laboratory informatics terminology.
+  terms:
+    - term: LIMS
+      definition: >-
+        Laboratory Information Management System. Software that manages samples,
+        workflows, and test data throughout the laboratory. Thermo Scientific
+        SampleManager is a leading LIMS platform.
+      tags:
+        - Core Concept
+        - Laboratory
+
+    - term: SampleManager
+      definition: >-
+        The Thermo Scientific laboratory information management system (LIMS)
+        used for sample tracking, workflow automation, result entry, and
+        regulatory compliance in quality and research labs.
+      tags:
+        - Product
+        - LIMS
+
+    - term: Sample Identity
+      definition: >-
+        The unique identifier for a laboratory sample in SampleManager, also
+        known as the sample barcode. Used to track the sample through all
+        laboratory workflows from login to results authorization.
+      tags:
+        - Identifier
+        - Sample Management
+
+    - term: Analysis
+      definition: >-
+        A template in SampleManager that defines the tests, components, and
+        methods to be performed on a sample type. Assigned at sample login.
+      tags:
+        - Configuration
+        - LIMS
+
+    - term: Entity
+      definition: >-
+        A data table/object type in SampleManager (e.g., SAMPLE, TEST, RESULT,
+        CUSTOMER, BATCH_HEADER). The REST API supports browsing any entity type.
+      tags:
+        - Data Model
+        - LIMS
+
+    - term: NanoDrop
+      definition: >-
+        Thermo Scientific NanoDrop microvolume UV-Vis spectrophotometer instruments
+        that measure nucleic acid and protein concentration from 1-2 µL samples
+        without cuvettes or dilution.
+      tags:
+        - Product
+        - Instruments
+        - Spectrophotometry
+
+    - term: Absorbance
+      definition: >-
+        A measure of the amount of light absorbed by a sample at a given wavelength.
+        DNA absorbs maximally at 260 nm; proteins at 280 nm. Used to calculate
+        concentration via the Beer-Lambert Law.
+      tags:
+        - Measurement
+        - Spectrophotometry
+
+    - term: A260/A280 Ratio
+      definition: >-
+        The ratio of absorbance at 260 nm to 280 nm. Used to assess nucleic acid
+        purity. Pure DNA typically has a ratio of ~1.8; pure RNA ~2.0. Lower ratios
+        indicate protein contamination.
+      tags:
+        - Purity Metric
+        - Quality Control
+
+    - term: A260/A230 Ratio
+      definition: >-
+        The ratio of absorbance at 260 nm to 230 nm. Indicates co-purification of
+        organic compounds (phenol, EDTA, carbohydrates). Values of 2.0-2.2 indicate
+        high purity nucleic acid preparations.
+      tags:
+        - Purity Metric
+        - Quality Control
+
+    - term: Heat Rate
+      definition: >-
+        NanoDrop-specific: not applicable. See Thermo Power for heat rate definition
+        in power generation context.
+      tags:
+        - Disambiguation
+
+    - term: WCF Service
+      definition: >-
+        Windows Communication Foundation service. The underlying technology for the
+        SampleManager REST API service (smpwcfrestvgsm), which runs on port 56105.
+      tags:
+        - Technical
+        - Infrastructure
+
+    - term: OData
+      definition: >-
+        Open Data Protocol. A REST-based protocol for querying and updating data
+        using standard HTTP. Thermo Fisher Connect Platform and Core Connect use
+        OData-compliant APIs for lab informatics integration.
+      tags:
+        - Standard
+        - Protocol
+        - Connect Platform
+
+    - term: Platform for Science
+      definition: >-
+        Thermo Fisher Scientific's integrated laboratory informatics platform
+        that connects instruments, LIMS, ELN, and enterprise systems. Provides
+        OData API and developer portal for integration.
+      tags:
+        - Platform
+        - Integration
+
+  domains:
+    - name: Sample Management
+      description: Laboratory sample lifecycle from receipt to results authorization.
+      concepts:
+        - Sample
+        - Sample Identity
+        - Analysis
+        - Sample Status
+        - Login
+        - Authorization
+
+    - name: Test Results
+      description: Analytical measurements and quality data.
+      concepts:
+        - Result
+        - Component
+        - Test
+        - Units
+        - Status
+
+    - name: Spectrophotometry
+      description: UV-Vis optical measurements using NanoDrop instruments.
+      concepts:
+        - Absorbance
+        - Concentration
+        - A260/A280 Ratio
+        - A260/A230 Ratio
+        - Spectrum
+        - Nucleic Acid Quantification
+        - Protein Quantification
+
+    - name: Laboratory Informatics
+      description: Software and data integration for laboratory operations.
+      concepts:
+        - LIMS
+        - ELN
+        - OData
+        - REST API
+        - Platform for Science
+        - SampleManager

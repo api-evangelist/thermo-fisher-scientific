@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/thermo-fisher-scientific/blob/main/json-schema/thermo-fisher-sample-schema.json",
+  "title": "Thermo Fisher SampleManager Sample",
+  "description": "A laboratory sample record in the Thermo Scientific SampleManager LIMS system.",
+  "type": "object",
+  "required": ["identity"],
+  "properties": {
+    "identity": {
+      "type": "string",
+      "description": "Unique sample identity or barcode."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable sample description."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["A", "C", "X", "L"],
+      "description": "Sample status: A=Authorized, C=Completed, X=Cancelled, L=Login pending."
+    },
+    "sampled_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the sample was collected or received."
+    },
+    "customer": {
+      "type": "string",
+      "description": "Customer identity associated with the sample."
+    },
+    "product": {
+      "type": "string",
+      "description": "Product or material identity associated with the sample."
+    },
+    "analysis": {
+      "type": "string",
+      "description": "Analysis template assigned to the sample."
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Due date for completing sample results."
+    },
+    "login_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the sample was logged into the system."
+    },
+    "logged_in_by": {
+      "type": "string",
+      "description": "Username who logged the sample into the system."
+    }
+  }
+}
