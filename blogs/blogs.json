@@ -1,0 +1,13 @@
+{
+  "repo": "thermo-fisher-scientific",
+  "feeds": [
+    {
+      "source": "https://www.thermofisher.com/blog/connectedlab/",
+      "feed_url": "https://www.thermofisher.com/blog/connectedlab/feed/",
+      "saved": 10,
+      "title": "The Connected Lab"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:37:46Z"
+}
