@@ -4,98 +4,31 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Thermo Fisher Scientific
 providerId: thermo-fisher-scientific
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Life Sciences
-  - Laboratory
-  - Scientific Instruments
-  - LIMS
-  - Diagnostics
-  - Biosciences
-  - Fortune 500
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Thermo Fisher Scientific API surface. Captures
-  per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values
-  to be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+  - Life Sciences
+  - LIMS
+description: >-
+  Thermo Fisher does not publish a public developer API rate-limits reference. APIs delivered as part
+  of digital science / LIMS / instrument-services engagements are governed by the customer's master agreement
+  and deployment topology rather than a shared public quota.
+sources:
+  - https://www.thermofisher.com/us/en/home/digital-science.html
+  - https://www.thermofisher.com/us/en/home/contact-us.html
+notes: >-
+  No public rate-limits documentation. Limits are deployment / contract-defined.
+responseCodes: {}
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Thermo Fisher SampleManager LIMS REST API
-      - Thermo Fisher NanoDrop Ultra Web API
-      - Thermo Fisher Connect Platform OData API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Thermo Fisher SampleManager LIMS REST API
-      - Thermo Fisher NanoDrop Ultra Web API
-      - Thermo Fisher Connect Platform OData API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Thermo Fisher SampleManager LIMS REST API
-      - Thermo Fisher NanoDrop Ultra Web API
-      - Thermo Fisher Connect Platform OData API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Thermo Fisher SampleManager LIMS REST API
-      - Thermo Fisher NanoDrop Ultra Web API
-      - Thermo Fisher Connect Platform OData API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
+  - name: Engagement-Defined
     scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Thermo Fisher SampleManager LIMS REST API
-      - Thermo Fisher NanoDrop Ultra Web API
-      - Thermo Fisher Connect Platform OData API
+    metric: varies
+    limit: defined per Thermo Fisher digital-science engagement
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Contractual Capacity
+    description: Throughput and SLA for Thermo Fisher digital-science / LIMS APIs are sized in the customer
+      contract during onboarding.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

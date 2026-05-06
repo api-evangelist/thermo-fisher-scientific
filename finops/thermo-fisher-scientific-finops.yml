@@ -1,156 +1,66 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Thermo Fisher Scientific
+providerId: thermo-fisher-scientific
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - FinOps
+  - FOCUS
+  - Life Sciences
+  - LIMS
+description: >-
+  FOCUS-aligned FinOps scaffold for Thermo Fisher Scientific. Commercial relationships are a mix of consumables
+  catalog purchasing, instrument capex / services, and digital-science software subscriptions; there is
+  no public usage-based price list to map cleanly to FOCUS columns until the engagement is in place.
+sources:
+  - https://www.thermofisher.com/us/en/home/digital-science.html
+  - https://www.thermofisher.com/us/en/home/contact-us.html
+  - https://focus.finops.org/focus-specification/v1-3/
+notes: >-
+  No public usage-based price list. Reconciliation is engagement-specific.
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Thermo Fisher Scientific
-providerId: thermo-fisher-scientific
-publisherName: Thermo Fisher Scientific
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Life Sciences
-  - Laboratory
-  - Scientific Instruments
-  - LIMS
-  - Diagnostics
-  - Biosciences
-  - Fortune 500
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Thermo Fisher Scientific API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Thermo Fisher Scientific Inc.
+serviceCategory: Life Sciences
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription
+  billingFrequency: Per-Invoice
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Thermo Fisher Scientific
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: Life Sciences
   ProviderName: Thermo Fisher Scientific
-  PublisherName: Thermo Fisher Scientific
-  InvoiceIssuerName: Thermo Fisher Scientific
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Thermo Fisher Scientific Inc.
+  InvoiceIssuerName: Thermo Fisher Scientific Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: digital_science_subscription
+    unit: varies
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Thermo Fisher SampleManager LIMS REST API
-    baseURL: https://{your-server}:{port}/smpwcfrestvgsm
-    tags:
-      - LIMS
-      - Laboratory
-      - Life Sciences
-      - Sample Management
-      - REST API
-    serviceName: Thermo Fisher SampleManager LIMS REST API
-    serviceCategory: API
-  - name: Thermo Fisher NanoDrop Ultra Web API
-    baseURL: https://{nanodrop-instrument-ip}
-    tags:
-      - Spectrophotometry
-      - Laboratory Instruments
-      - Life Sciences
-      - REST API
-      - UV-Vis
-    serviceName: Thermo Fisher NanoDrop Ultra Web API
-    serviceCategory: API
-  - name: Thermo Fisher Connect Platform OData API
-    baseURL: https://api.thermofisher.com
-    tags:
-      - Platform
-      - OData
-      - Laboratory
-      - Life Sciences
-      - Integration
-    serviceName: Thermo Fisher Connect Platform OData API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - product_line
+principles:
+  - name: Visibility
+    description: Visibility surfaces are Thermo Fisher invoices, customer portal order history, and any
+      LIMS / digital-science admin consoles included in the engagement.
+  - name: Allocation
+    description: Allocate spend across labs / programs based on Thermo Fisher PO and invoice line items
+      keyed to lab cost centers.
+  - name: Optimization
+    description: Consolidate purchasing under negotiated agreements, retire unused digital-science modules
+      at renewal, and align reagent reorder cadence with consumption.
+  - name: Accountability
+    description: Lab / program owner inside the customer organization owns Thermo Fisher spend and reviews
+      against contractual baseline at renewal.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
