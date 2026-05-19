@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Thermo Fisher NanoDrop Ultra Web API — Instrument
+  description: 'Thermo Fisher NanoDrop Ultra Web API — Instrument. 1 operations. Lead operation: Get Instrument Status. Self-contained
+    Naftiko capability covering one Thermo Fisher Scientific business surface.'
+  tags:
+  - Thermo Fisher Scientific
+  - Instrument
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THERMO_FISHER_SCIENTIFIC_API_KEY: THERMO_FISHER_SCIENTIFIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: thermo-fisher-nanodrop-instrument
+    baseUri: http://{instrument-ip}:{port}
+    description: Thermo Fisher NanoDrop Ultra Web API — Instrument business capability. Self-contained, no shared references.
+    resources:
+    - name: api-status
+      path: /api/status
+      operations:
+      - name: getinstrumentstatus
+        method: GET
+        description: Get Instrument Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: thermo-fisher-nanodrop-instrument-rest
+    port: 8080
+    description: REST adapter for Thermo Fisher NanoDrop Ultra Web API — Instrument. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/status
+      name: api-status
+      description: REST surface for api-status.
+      operations:
+      - method: GET
+        name: getinstrumentstatus
+        description: Get Instrument Status
+        call: thermo-fisher-nanodrop-instrument.getinstrumentstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: thermo-fisher-nanodrop-instrument-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Thermo Fisher NanoDrop Ultra Web API — Instrument. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-instrument-status
+      description: Get Instrument Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: thermo-fisher-nanodrop-instrument.getinstrumentstatus
+      outputParameters:
+      - type: object
+        mapping: $.

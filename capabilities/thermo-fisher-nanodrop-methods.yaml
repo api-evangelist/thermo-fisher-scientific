@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Thermo Fisher NanoDrop Ultra Web API — Methods
+  description: 'Thermo Fisher NanoDrop Ultra Web API — Methods. 1 operations. Lead operation: Get Methods. Self-contained
+    Naftiko capability covering one Thermo Fisher Scientific business surface.'
+  tags:
+  - Thermo Fisher Scientific
+  - Methods
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THERMO_FISHER_SCIENTIFIC_API_KEY: THERMO_FISHER_SCIENTIFIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: thermo-fisher-nanodrop-methods
+    baseUri: http://{instrument-ip}:{port}
+    description: Thermo Fisher NanoDrop Ultra Web API — Methods business capability. Self-contained, no shared references.
+    resources:
+    - name: api-methods
+      path: /api/methods
+      operations:
+      - name: getmethods
+        method: GET
+        description: Get Methods
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: thermo-fisher-nanodrop-methods-rest
+    port: 8080
+    description: REST adapter for Thermo Fisher NanoDrop Ultra Web API — Methods. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/methods
+      name: api-methods
+      description: REST surface for api-methods.
+      operations:
+      - method: GET
+        name: getmethods
+        description: Get Methods
+        call: thermo-fisher-nanodrop-methods.getmethods
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: thermo-fisher-nanodrop-methods-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Thermo Fisher NanoDrop Ultra Web API — Methods. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-methods
+      description: Get Methods
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: thermo-fisher-nanodrop-methods.getmethods
+      outputParameters:
+      - type: object
+        mapping: $.

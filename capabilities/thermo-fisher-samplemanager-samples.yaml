@@ -1,0 +1,145 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Thermo Fisher SampleManager LIMS REST API — Samples
+  description: 'Thermo Fisher SampleManager LIMS REST API — Samples. 2 operations. Lead operation: Get Samples. Self-contained
+    Naftiko capability covering one Thermo Fisher Scientific business surface.'
+  tags:
+  - Thermo Fisher Scientific
+  - Samples
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THERMO_FISHER_SCIENTIFIC_API_KEY: THERMO_FISHER_SCIENTIFIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: thermo-fisher-samplemanager-samples
+    baseUri: https://{server}:{port}/smpwcfrestvgsm
+    description: Thermo Fisher SampleManager LIMS REST API — Samples business capability. Self-contained, no shared references.
+    resources:
+    - name: mobile-samples
+      path: /mobile/samples
+      operations:
+      - name: getsamples
+        method: GET
+        description: Get Samples
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Sample status filter (A=Authorized, C=Completed, X=Cancelled, L=Login pending).
+        - name: from_date
+          in: query
+          type: string
+          description: Filter samples from this date (YYYY-MM-DD).
+        - name: to_date
+          in: query
+          type: string
+          description: Filter samples to this date (YYYY-MM-DD).
+        - name: pagesize
+          in: query
+          type: integer
+          description: Number of records per page.
+        - name: page
+          in: query
+          type: integer
+          description: Page number.
+    - name: mobile-samples-sampleId
+      path: /mobile/samples/{sampleId}
+      operations:
+      - name: getsamplebyid
+        method: GET
+        description: Get Sample By ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sampleId
+          in: path
+          type: string
+          description: The sample identity/barcode.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.THERMO_FISHER_SCIENTIFIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: thermo-fisher-samplemanager-samples-rest
+    port: 8080
+    description: REST adapter for Thermo Fisher SampleManager LIMS REST API — Samples. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/mobile/samples
+      name: mobile-samples
+      description: REST surface for mobile-samples.
+      operations:
+      - method: GET
+        name: getsamples
+        description: Get Samples
+        call: thermo-fisher-samplemanager-samples.getsamples
+        with:
+          status: rest.status
+          from_date: rest.from_date
+          to_date: rest.to_date
+          pagesize: rest.pagesize
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mobile/samples/{sampleid}
+      name: mobile-samples-sampleid
+      description: REST surface for mobile-samples-sampleId.
+      operations:
+      - method: GET
+        name: getsamplebyid
+        description: Get Sample By ID
+        call: thermo-fisher-samplemanager-samples.getsamplebyid
+        with:
+          sampleId: rest.sampleId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: thermo-fisher-samplemanager-samples-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Thermo Fisher SampleManager LIMS REST API — Samples. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-samples
+      description: Get Samples
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: thermo-fisher-samplemanager-samples.getsamples
+      with:
+        status: tools.status
+        from_date: tools.from_date
+        to_date: tools.to_date
+        pagesize: tools.pagesize
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-sample-id
+      description: Get Sample By ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: thermo-fisher-samplemanager-samples.getsamplebyid
+      with:
+        sampleId: tools.sampleId
+      outputParameters:
+      - type: object
+        mapping: $.

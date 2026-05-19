@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Thermo Fisher SampleManager LIMS REST API — Results
+  description: 'Thermo Fisher SampleManager LIMS REST API — Results. 2 operations. Lead operation: Submit Results. Self-contained
+    Naftiko capability covering one Thermo Fisher Scientific business surface.'
+  tags:
+  - Thermo Fisher Scientific
+  - Results
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THERMO_FISHER_SCIENTIFIC_API_KEY: THERMO_FISHER_SCIENTIFIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: thermo-fisher-samplemanager-results
+    baseUri: https://{server}:{port}/smpwcfrestvgsm
+    description: Thermo Fisher SampleManager LIMS REST API — Results business capability. Self-contained, no shared references.
+    resources:
+    - name: mobile-results
+      path: /mobile/results
+      operations:
+      - name: submitresults
+        method: POST
+        description: Submit Results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: mobile-samples-sampleId-results
+      path: /mobile/samples/{sampleId}/results
+      operations:
+      - name: getsampleresults
+        method: GET
+        description: Get Sample Results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sampleId
+          in: path
+          type: string
+          description: The sample identity/barcode.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.THERMO_FISHER_SCIENTIFIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: thermo-fisher-samplemanager-results-rest
+    port: 8080
+    description: REST adapter for Thermo Fisher SampleManager LIMS REST API — Results. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/mobile/results
+      name: mobile-results
+      description: REST surface for mobile-results.
+      operations:
+      - method: POST
+        name: submitresults
+        description: Submit Results
+        call: thermo-fisher-samplemanager-results.submitresults
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mobile/samples/{sampleid}/results
+      name: mobile-samples-sampleid-results
+      description: REST surface for mobile-samples-sampleId-results.
+      operations:
+      - method: GET
+        name: getsampleresults
+        description: Get Sample Results
+        call: thermo-fisher-samplemanager-results.getsampleresults
+        with:
+          sampleId: rest.sampleId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: thermo-fisher-samplemanager-results-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Thermo Fisher SampleManager LIMS REST API — Results. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: submit-results
+      description: Submit Results
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: thermo-fisher-samplemanager-results.submitresults
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-sample-results
+      description: Get Sample Results
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: thermo-fisher-samplemanager-results.getsampleresults
+      with:
+        sampleId: tools.sampleId
+      outputParameters:
+      - type: object
+        mapping: $.

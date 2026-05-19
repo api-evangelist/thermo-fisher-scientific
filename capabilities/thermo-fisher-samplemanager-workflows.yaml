@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Thermo Fisher SampleManager LIMS REST API — Workflows
+  description: 'Thermo Fisher SampleManager LIMS REST API — Workflows. 1 operations. Lead operation: Trigger Workflow. Self-contained
+    Naftiko capability covering one Thermo Fisher Scientific business surface.'
+  tags:
+  - Thermo Fisher Scientific
+  - Workflows
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THERMO_FISHER_SCIENTIFIC_API_KEY: THERMO_FISHER_SCIENTIFIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: thermo-fisher-samplemanager-workflows
+    baseUri: https://{server}:{port}/smpwcfrestvgsm
+    description: Thermo Fisher SampleManager LIMS REST API — Workflows business capability. Self-contained, no shared references.
+    resources:
+    - name: mobile-workflows-workflowName-trigger
+      path: /mobile/workflows/{workflowName}/trigger
+      operations:
+      - name: triggerworkflow
+        method: POST
+        description: Trigger Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowName
+          in: path
+          type: string
+          description: The name of the SampleManager workflow to trigger.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.THERMO_FISHER_SCIENTIFIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: thermo-fisher-samplemanager-workflows-rest
+    port: 8080
+    description: REST adapter for Thermo Fisher SampleManager LIMS REST API — Workflows. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/mobile/workflows/{workflowname}/trigger
+      name: mobile-workflows-workflowname-trigger
+      description: REST surface for mobile-workflows-workflowName-trigger.
+      operations:
+      - method: POST
+        name: triggerworkflow
+        description: Trigger Workflow
+        call: thermo-fisher-samplemanager-workflows.triggerworkflow
+        with:
+          workflowName: rest.workflowName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: thermo-fisher-samplemanager-workflows-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Thermo Fisher SampleManager LIMS REST API — Workflows. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: trigger-workflow
+      description: Trigger Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: thermo-fisher-samplemanager-workflows.triggerworkflow
+      with:
+        workflowName: tools.workflowName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

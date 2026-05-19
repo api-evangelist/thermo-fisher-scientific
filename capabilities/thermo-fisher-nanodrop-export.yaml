@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Thermo Fisher NanoDrop Ultra Web API — Export
+  description: 'Thermo Fisher NanoDrop Ultra Web API — Export. 1 operations. Lead operation: Export Measurements. Self-contained
+    Naftiko capability covering one Thermo Fisher Scientific business surface.'
+  tags:
+  - Thermo Fisher Scientific
+  - Export
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THERMO_FISHER_SCIENTIFIC_API_KEY: THERMO_FISHER_SCIENTIFIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: thermo-fisher-nanodrop-export
+    baseUri: http://{instrument-ip}:{port}
+    description: Thermo Fisher NanoDrop Ultra Web API — Export business capability. Self-contained, no shared references.
+    resources:
+    - name: api-export
+      path: /api/export
+      operations:
+      - name: exportmeasurements
+        method: POST
+        description: Export Measurements
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: thermo-fisher-nanodrop-export-rest
+    port: 8080
+    description: REST adapter for Thermo Fisher NanoDrop Ultra Web API — Export. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/export
+      name: api-export
+      description: REST surface for api-export.
+      operations:
+      - method: POST
+        name: exportmeasurements
+        description: Export Measurements
+        call: thermo-fisher-nanodrop-export.exportmeasurements
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: thermo-fisher-nanodrop-export-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Thermo Fisher NanoDrop Ultra Web API — Export. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: export-measurements
+      description: Export Measurements
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: thermo-fisher-nanodrop-export.exportmeasurements
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
