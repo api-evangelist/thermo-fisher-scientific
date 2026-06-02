@@ -2,12 +2,20 @@
   "repo": "thermo-fisher-scientific",
   "feeds": [
     {
+      "source": "https://www.thermofisher.com/blog/connectedlab/feed/",
+      "feed_url": "https://www.thermofisher.com/blog/connectedlab/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://www.thermofisher.com/blog/connectedlab/",
       "feed_url": "https://www.thermofisher.com/blog/connectedlab/feed/",
-      "title": "The Connected Lab",
-      "saved": 8
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 18,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 19,
+  "fetched": "2026-06-01T23:35:02Z"
 }
