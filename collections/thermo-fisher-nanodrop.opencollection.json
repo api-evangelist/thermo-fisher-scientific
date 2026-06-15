@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thermo Fisher NanoDrop Ultra Web API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instrument",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Instrument Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/api/status"
+          },
+          "docs": "Returns the current status and readiness of the NanoDrop Ultra instrument."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Measurements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Perform Measurement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{instrument-ip}:{port}/api/measure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a sample measurement on the NanoDrop Ultra instrument using the specified method. The instrument must have a sample loaded on the pedestal before calling this endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Measurements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/api/measurements",
+            "params": [
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter measurements from this date."
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter measurements to this date."
+              },
+              {
+                "name": "method",
+                "value": "",
+                "type": "query",
+                "description": "Filter by measurement method name."
+              },
+              {
+                "name": "sample_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sample identifier."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of stored measurements from the NanoDrop Ultra database. Supports filtering by date, sample ID, and method."
+        },
+        {
+          "info": {
+            "name": "Get Measurement By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/api/measurements/:measurementId",
+            "params": [
+              {
+                "name": "measurementId",
+                "value": "",
+                "type": "path",
+                "description": "The unique measurement identifier."
+              }
+            ]
+          },
+          "docs": "Returns the full measurement data including spectrum for a specific measurement."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Methods",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/api/methods"
+          },
+          "docs": "Returns a list of available measurement methods configured on the instrument."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export Measurements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{instrument-ip}:{port}/api/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exports measurement data in the specified format (CSV, JSON, XML) for integration with LIMS or other laboratory informatics systems."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

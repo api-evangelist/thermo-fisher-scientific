@@ -1,0 +1,275 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thermo Fisher SampleManager LIMS REST API",
+    "version": "21.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}:{port}/smpwcfrestvgsm/mobile/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates a user and returns a session token for subsequent API calls. Token must be included in the Authorization header."
+        },
+        {
+          "info": {
+            "name": "Logout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}:{port}/smpwcfrestvgsm/mobile/logout"
+          },
+          "docs": "Invalidates the current session token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Browse Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/smpwcfrestvgsm/mobile/browses/:entity",
+            "params": [
+              {
+                "name": "entity",
+                "value": "",
+                "type": "path",
+                "description": "The SampleManager entity name (e.g., SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+              },
+              {
+                "name": "criteria",
+                "value": "",
+                "type": "query",
+                "description": "Filter criteria using SampleManager query syntax (e.g., STATUS='A' AND SAMPLED_DATE > '2026-01-01')."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by."
+              },
+              {
+                "name": "ascending",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "pagesize",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)."
+              }
+            ]
+          },
+          "docs": "Returns a list of records for the specified SampleManager entity (e.g., SAMPLE, TEST, RESULT, CUSTOMER). Supports filtering and sorting."
+        },
+        {
+          "info": {
+            "name": "Get Entity By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/smpwcfrestvgsm/mobile/browses/:entity/:id",
+            "params": [
+              {
+                "name": "entity",
+                "value": "",
+                "type": "path",
+                "description": "The SampleManager entity name."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The record identity (primary key value)."
+              }
+            ]
+          },
+          "docs": "Returns a single record for the specified entity and record identity."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Samples",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Samples",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/smpwcfrestvgsm/mobile/samples",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Sample status filter (A=Authorized, C=Completed, X=Cancelled, L=Login pending)."
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter samples from this date (YYYY-MM-DD)."
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter samples to this date (YYYY-MM-DD)."
+              },
+              {
+                "name": "pagesize",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              }
+            ]
+          },
+          "docs": "Returns a list of laboratory samples accessible to the authenticated user. Supports filtering by status, date range, and other criteria."
+        },
+        {
+          "info": {
+            "name": "Get Sample By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/smpwcfrestvgsm/mobile/samples/:sampleId",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path",
+                "description": "The sample identity/barcode."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific laboratory sample."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Sample Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}:{port}/smpwcfrestvgsm/mobile/samples/:sampleId/results",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path",
+                "description": "The sample identity/barcode."
+              }
+            ]
+          },
+          "docs": "Returns all test results associated with a specific sample."
+        },
+        {
+          "info": {
+            "name": "Submit Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}:{port}/smpwcfrestvgsm/mobile/results",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits test results for one or more samples. Triggers result entry workflows and validation in SampleManager."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Trigger Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}:{port}/smpwcfrestvgsm/mobile/workflows/:workflowName/trigger",
+            "params": [
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SampleManager workflow to trigger."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers a named workflow in SampleManager, passing optional parameters to the workflow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

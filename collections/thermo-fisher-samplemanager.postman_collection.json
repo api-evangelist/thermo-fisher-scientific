@@ -1,0 +1,2396 @@
+{
+  "item": [
+    {
+      "id": "4d43def0-b8b6-443d-8d27-e56dbef17d09",
+      "name": "Samples",
+      "description": {
+        "content": "Access and manage laboratory samples.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2e264a7-9266-4469-8f46-1ee665cd3f95",
+          "name": "Get Samples",
+          "request": {
+            "name": "Get Samples",
+            "description": {
+              "content": "Returns a list of laboratory samples accessible to the authenticated user. Supports filtering by status, date range, and other criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "samples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Sample status filter (A=Authorized, C=Completed, X=Cancelled, L=Login pending)."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_date",
+                  "value": "<date>",
+                  "description": "Filter samples from this date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to_date",
+                  "value": "<date>",
+                  "description": "Filter samples to this date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "pagesize",
+                  "value": "50",
+                  "description": "Number of records per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The hostname of your SampleManager LIMS server.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The port the SampleManager WCF service runs on.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4965a2d2-f607-4721-bff4-2ddebdfecfef",
+              "name": "Sample list returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "pagesize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 3486,\n  \"page\": 4344,\n  \"pagesize\": 6923,\n  \"samples\": [\n    {\n      \"identity\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"string\",\n      \"sampled_date\": \"1992-02-02\",\n      \"customer\": \"string\",\n      \"product\": \"string\",\n      \"analysis\": \"string\",\n      \"due_date\": \"1996-08-17\"\n    },\n    {\n      \"identity\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"string\",\n      \"sampled_date\": \"1996-07-25\",\n      \"customer\": \"string\",\n      \"product\": \"string\",\n      \"analysis\": \"string\",\n      \"due_date\": \"1968-10-11\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f75c030-b2fb-494c-8ecd-0fb33b8774e8",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "pagesize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32a4c57a-c02d-4020-ac66-04b9eb323da4",
+          "name": "Get Sample By ID",
+          "request": {
+            "name": "Get Sample By ID",
+            "description": {
+              "content": "Returns details for a specific laboratory sample.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "samples",
+                ":sampleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleId",
+                  "description": "(Required) The sample identity/barcode."
+                },
+                {
+                  "description": "The hostname of your SampleManager LIMS server.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The port the SampleManager WCF service runs on.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d79edaa-7a64-4f2d-9e17-90fe4bd79ca7",
+              "name": "Sample details returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The sample identity/barcode."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"string\",\n  \"sampled_date\": \"1964-08-17\",\n  \"customer\": \"string\",\n  \"product\": \"string\",\n  \"analysis\": \"string\",\n  \"due_date\": \"1986-12-02\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ceda364-f2b1-41a2-aea3-33545421fc22",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The sample identity/barcode."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ce4f4a00-aca3-4f38-b3b3-ddccd2c410f9",
+              "name": "Sample not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The sample identity/barcode."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "68c6c273-05f0-4f7b-9976-b06b420f1f5f",
+      "name": "Entities",
+      "description": {
+        "content": "Browse entity data from SampleManager.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "669dd096-fda4-4f25-bca7-d2381140445c",
+          "name": "Browse Entity",
+          "request": {
+            "name": "Browse Entity",
+            "description": {
+              "content": "Returns a list of records for the specified SampleManager entity (e.g., SAMPLE, TEST, RESULT, CUSTOMER). Supports filtering and sorting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "browses",
+                ":entity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "criteria",
+                  "value": "<string>",
+                  "description": "Filter criteria using SampleManager query syntax (e.g., STATUS='A' AND SAMPLED_DATE > '2026-01-01')."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Field name to sort results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "ascending",
+                  "value": "true",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "pagesize",
+                  "value": "50",
+                  "description": "Number of records per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entity",
+                  "description": "(Required) The SampleManager entity name (e.g., SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+                },
+                {
+                  "description": "The hostname of your SampleManager LIMS server.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The port the SampleManager WCF service runs on.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a005bbc0-a65c-4484-b4b5-5bcd7c841c05",
+              "name": "Entity records returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "criteria",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ascending",
+                      "value": "true"
+                    },
+                    {
+                      "key": "pagesize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name (e.g., SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 5556,\n  \"page\": 8641,\n  \"pagesize\": 9218,\n  \"records\": [\n    {\n      \"identity\": \"string\",\n      \"key_0\": 776,\n      \"key_1\": \"string\"\n    },\n    {\n      \"identity\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe514fb7-9042-4147-bc0e-90312284131b",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "criteria",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ascending",
+                      "value": "true"
+                    },
+                    {
+                      "key": "pagesize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name (e.g., SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0497fe0-254a-4858-a73e-9c9b23159a01",
+              "name": "Entity not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "criteria",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ascending",
+                      "value": "true"
+                    },
+                    {
+                      "key": "pagesize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name (e.g., SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eccbe47f-109a-485d-9952-983f5c33801f",
+          "name": "Get Entity By ID",
+          "request": {
+            "name": "Get Entity By ID",
+            "description": {
+              "content": "Returns a single record for the specified entity and record identity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "browses",
+                ":entity",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entity",
+                  "description": "(Required) The SampleManager entity name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The record identity (primary key value)."
+                },
+                {
+                  "description": "The hostname of your SampleManager LIMS server.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The port the SampleManager WCF service runs on.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a27ce5f6-40e3-4a0d-854d-774b3063d760",
+              "name": "Entity record returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The record identity (primary key value)."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": \"string\",\n  \"key_0\": false,\n  \"key_1\": false,\n  \"key_2\": 1245\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1f7d861-152b-4bcb-aabf-671e79fa8c62",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The record identity (primary key value)."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1dd67daa-8072-497a-96c4-41ce8b53096f",
+              "name": "Record not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The record identity (primary key value)."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5db4b763-5406-4da4-9b37-236a0ab5cc2f",
+      "name": "Results",
+      "description": {
+        "content": "Access test results and measurements.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9ad1c0b-cc3b-42c1-85a1-51e4a98f09d1",
+          "name": "Get Sample Results",
+          "request": {
+            "name": "Get Sample Results",
+            "description": {
+              "content": "Returns all test results associated with a specific sample.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "samples",
+                ":sampleId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleId",
+                  "description": "(Required) The sample identity/barcode."
+                },
+                {
+                  "description": "The hostname of your SampleManager LIMS server.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The port the SampleManager WCF service runs on.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ced90e7b-04a4-4fd8-86f7-7e17ad5983a9",
+              "name": "Sample results returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples",
+                    ":sampleId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The sample identity/barcode."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 8242,\n  \"results\": [\n    {\n      \"sample_id\": \"string\",\n      \"test\": \"string\",\n      \"component\": \"string\",\n      \"result_value\": \"string\",\n      \"units\": \"string\",\n      \"status\": \"string\",\n      \"entered_on\": \"1986-10-19T10:27:27.675Z\",\n      \"entered_by\": \"string\"\n    },\n    {\n      \"sample_id\": \"string\",\n      \"test\": \"string\",\n      \"component\": \"string\",\n      \"result_value\": \"string\",\n      \"units\": \"string\",\n      \"status\": \"string\",\n      \"entered_on\": \"1952-12-27T14:58:47.994Z\",\n      \"entered_by\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "faff3a45-b0fa-49b3-adb6-dd1f424fe4db",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples",
+                    ":sampleId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The sample identity/barcode."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3beff130-df61-4ec9-aa51-a6484e9dd61d",
+              "name": "Sample not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples",
+                    ":sampleId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The sample identity/barcode."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db8bf6fa-b108-4526-bf23-9de79c35d1bb",
+          "name": "Submit Results",
+          "request": {
+            "name": "Submit Results",
+            "description": {
+              "content": "Submits test results for one or more samples. Triggers result entry workflows and validation in SampleManager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of your SampleManager LIMS server.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The port the SampleManager WCF service runs on.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sample_id\": \"<string>\",\n  \"results\": [\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    },\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3e42ad89-8c1e-4512-80fa-2ea03e0ad0a4",
+              "name": "Results submitted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sample_id\": \"<string>\",\n  \"results\": [\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    },\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fffa78c-5af5-4735-9d35-5e031e186d14",
+              "name": "Invalid result data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sample_id\": \"<string>\",\n  \"results\": [\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    },\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94ae4946-ab0c-4bb9-a13f-b09b8a352fb5",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sample_id\": \"<string>\",\n  \"results\": [\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    },\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0c80b19b-789c-4a23-9fce-5875b92201ba",
+      "name": "Workflows",
+      "description": {
+        "content": "Trigger and manage laboratory workflows.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "74855712-f05d-44c3-b775-579d9855bb9d",
+          "name": "Trigger Workflow",
+          "request": {
+            "name": "Trigger Workflow",
+            "description": {
+              "content": "Triggers a named workflow in SampleManager, passing optional parameters to the workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "workflows",
+                ":workflowName",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The name of the SampleManager workflow to trigger."
+                },
+                {
+                  "description": "The hostname of your SampleManager LIMS server.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The port the SampleManager WCF service runs on.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ccfd2030-5b13-46ba-b9de-d846d0d5df4a",
+              "name": "Workflow triggered successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "workflows",
+                    ":workflowName",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The name of the SampleManager workflow to trigger."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 5643,\n  \"key_1\": true,\n  \"key_2\": \"string\",\n  \"key_3\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"workflow_id\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a6663e7-9540-4afa-86dd-08b8cd115a54",
+              "name": "Invalid workflow parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "workflows",
+                    ":workflowName",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The name of the SampleManager workflow to trigger."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 5643,\n  \"key_1\": true,\n  \"key_2\": \"string\",\n  \"key_3\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "21082aa5-c6a0-4b1f-8b66-5fdd742f8ed4",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "workflows",
+                    ":workflowName",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The name of the SampleManager workflow to trigger."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 5643,\n  \"key_1\": true,\n  \"key_2\": \"string\",\n  \"key_3\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "009cf1bd-a71b-4cd6-9cc0-23d9cdd6c1bf",
+              "name": "Workflow not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "workflows",
+                    ":workflowName",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The name of the SampleManager workflow to trigger."
+                    },
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 5643,\n  \"key_1\": true,\n  \"key_2\": \"string\",\n  \"key_3\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1e218548-b3c5-4348-bcba-d87303780f88",
+      "name": "Authentication",
+      "description": {
+        "content": "Token-based authentication operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dbfc5648-33f7-42ea-8833-78ba630801bf",
+          "name": "Login",
+          "request": {
+            "name": "Login",
+            "description": {
+              "content": "Authenticates a user and returns a session token for subsequent API calls. Token must be included in the Authorization header.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of your SampleManager LIMS server.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The port the SampleManager WCF service runs on.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4784993-034f-450d-84c2-c995748ddf5b",
+              "name": "Login successful. Returns session token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"expires\": \"1960-09-13T13:38:02.463Z\",\n  \"username\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3d56fe8-7d0b-4453-977e-c002b4a85d3c",
+              "name": "Invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3906e536-cd30-4b2a-a54e-ae884ca786d4",
+          "name": "Logout",
+          "request": {
+            "name": "Logout",
+            "description": {
+              "content": "Invalidates the current session token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "logout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of your SampleManager LIMS server.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The port the SampleManager WCF service runs on.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "697d1d82-fe8e-4138-bac3-a234fb133df9",
+              "name": "Logout successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "437457ed-1e8c-46e5-aff8-4a3e8278f5a9",
+              "name": "Unauthorized or token already expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of your SampleManager LIMS server.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The port the SampleManager WCF service runs on.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of your SampleManager LIMS server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "server"
+    },
+    {
+      "description": {
+        "content": "The port the SampleManager WCF service runs on.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "56105",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}:{{port}}/smpwcfrestvgsm",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "71f01991-5d1e-4e96-a854-7f7fface30f3",
+    "name": "Thermo Fisher SampleManager LIMS REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Thermo Scientific SampleManager LIMS REST API enables secure connection between software applications and the SampleManager Laboratory Information Management System for simplified data exchange. Provides access to sample data, workflows, entity browsing, results, and laboratory operations. Supports token-based authentication with hardened session handling.\n\nContact Support:\n Name: Thermo Fisher Scientific Digital Solutions",
+      "type": "text/plain"
+    }
+  }
+}

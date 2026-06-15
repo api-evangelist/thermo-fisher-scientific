@@ -1,12 +1,11 @@
-# Thermo Fisher Scientific
+# Thermo Fisher Scientific (thermo-fisher-scientific)
 
 Thermo Fisher Scientific is the world leader in serving science, providing analytical instruments, life sciences solutions, specialty diagnostics, laboratory products, and biopharma services. Developer APIs enable laboratory automation, instrument control, LIMS integration, and data management across life science workflows.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/thermo-fisher-scientific/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/thermo-fisher-scientific/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/thermo-fisher-scientific/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/thermo-fisher-scientific/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Contract
 - **Position:** Consuming
 - **Access:** 3rd-Party
 
@@ -23,17 +22,16 @@ Thermo Fisher Scientific is the world leader in serving science, providing analy
 ## Timestamps
 
 - **Created:** 2026-03-21
-- **Modified:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Thermo Fisher SampleManager LIMS REST API
 
-REST API for Thermo Scientific SampleManager LIMS enabling secure access to sample data, test results, entity browsing, and workflow automation.
+The Thermo Scientific SampleManager LIMS REST API enables secure connection between software applications and the SampleManager LIMS system for simplified data exchange. Provides access to sample data, workflows, entities, results, and laboratory operations. Runs on port 56105 and supports token authentication.
 
-**Human URL:** [https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html](https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html)
-
-**Base URL:** https://{server}:56105/smpwcfrestvgsm
+- **Human URL:** [https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html](https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html)
+- **Base URL:** `https://{your-server}:{port}/smpwcfrestvgsm`
 
 #### Tags
 
@@ -43,32 +41,19 @@ REST API for Thermo Scientific SampleManager LIMS enabling secure access to samp
 - Sample Management
 - REST API
 
-#### Operations
-
-| Method | Path | Summary |
-|--------|------|---------|
-| POST | /mobile/login | Login |
-| POST | /mobile/logout | Logout |
-| GET | /mobile/browses/{entity} | Browse Entity |
-| GET | /mobile/browses/{entity}/{id} | Get Entity By ID |
-| GET | /mobile/samples | Get Samples |
-| GET | /mobile/samples/{sampleId} | Get Sample By ID |
-| GET | /mobile/samples/{sampleId}/results | Get Sample Results |
-| POST | /mobile/results | Submit Results |
-| POST | /mobile/workflows/{workflowName}/trigger | Trigger Workflow |
-
 #### Properties
 
 - [Documentation](https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html)
-- [OpenAPI](openapi/thermo-fisher-samplemanager-openapi.yml)
+- [OpenAPI](openapi/thermo-fisher-samplemanager-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/thermo-fisher-samplemanager.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/thermo-fisher-samplemanager.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Thermo Fisher NanoDrop Ultra Web API
 
-Local REST API for the NanoDrop Ultra microvolume UV-Vis spectrophotometer for instrument control, measurement execution, and LIMS data export.
+The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data export for the NanoDrop Ultra microvolume UV-Vis spectrophotometer. Enables laboratory informatics integration, automated measurement workflows, and data retrieval from the instrument.
 
-**Human URL:** [https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf](https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf)
-
-**Base URL:** http://{instrument-ip}:8080
+- **Human URL:** [https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf](https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf)
+- **Base URL:** `https://{nanodrop-instrument-ip}`
 
 #### Tags
 
@@ -78,75 +63,47 @@ Local REST API for the NanoDrop Ultra microvolume UV-Vis spectrophotometer for i
 - REST API
 - UV-Vis
 
-#### Operations
-
-| Method | Path | Summary |
-|--------|------|---------|
-| GET | /api/status | Get Instrument Status |
-| POST | /api/measure | Perform Measurement |
-| GET | /api/measurements | Get Measurements |
-| GET | /api/measurements/{measurementId} | Get Measurement By ID |
-| GET | /api/methods | Get Methods |
-| POST | /api/export | Export Measurements |
-
 #### Properties
 
 - [Documentation](https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf)
-- [OpenAPI](openapi/thermo-fisher-nanodrop-openapi.yml)
+- [OpenAPI](openapi/thermo-fisher-nanodrop-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/thermo-fisher-nanodrop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/thermo-fisher-nanodrop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Artifacts
+### Thermo Fisher Connect Platform OData API
 
-### OpenAPI Specs
+The Thermo Fisher Connect Platform OData API provides standards-based interoperability for laboratory data management, enabling integration between instruments, LIMS, ELN, and enterprise systems through the OData REST protocol.
 
-- [SampleManager LIMS REST API](openapi/thermo-fisher-samplemanager-openapi.yml)
-- [NanoDrop Ultra Web API](openapi/thermo-fisher-nanodrop-openapi.yml)
+- **Human URL:** [https://www.thermofisher.com/us/en/home/digital-science/thermo-fisher-connect.html](https://www.thermofisher.com/us/en/home/digital-science/thermo-fisher-connect.html)
+- **Base URL:** `https://api.thermofisher.com`
 
-### JSON Schemas
+#### Tags
 
-- [Sample](json-schema/thermo-fisher-sample-schema.json)
-- [NanoDrop Measurement](json-schema/thermo-fisher-measurement-schema.json)
+- Platform
+- OData
+- Laboratory
+- Life Sciences
+- Integration
 
-### JSON Structure
+#### Properties
 
-- [LIMS Structure](json-structure/thermo-fisher-lims-structure.json)
-
-### JSON-LD
-
-- [Thermo Fisher Context](json-ld/thermo-fisher-context.jsonld)
-
-### Examples
-
-- [Get Samples](examples/thermo-fisher-get-samples-example.json)
-- [NanoDrop Measurement](examples/thermo-fisher-nanodrop-measurement-example.json)
-
-### Spectral Rules
-
-- [Thermo Fisher Rules](rules/thermo-fisher-rules.yml)
-
-### Capabilities
-
-- [Lab Data Management](capabilities/lab-data-management.yaml)
-
-**Shared Definitions:**
-
-- [SampleManager LIMS](capabilities/shared/samplemanager-lims.yaml)
-- [NanoDrop Ultra](capabilities/shared/nanodrop-ultra.yaml)
-
-### Vocabulary
-
-- [Thermo Fisher Vocabulary](vocabulary/thermo-fisher-vocabulary.yml)
+- [Documentation](https://www.thermofisher.com/blog/connectedlab/platform-for-science-developer-portal-beta/)
+- [Postman Collection](collections/thermo-fisher-nanodrop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/thermo-fisher-nanodrop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/thermo-fisher-samplemanager.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/thermo-fisher-samplemanager.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [LinkedIn](https://www.linkedin.com/company/thermo-fisher-scientific)
 - [Website](https://www.thermofisher.com)
-- [Thermo Fisher Connect Platform](https://www.thermofisher.com/us/en/home/digital-science/thermo-fisher-connect.html)
-- [Connected Lab Blog](https://www.thermofisher.com/blog/connectedlab/)
-- [Developer Portal (Beta)](https://www.thermofisher.com/blog/connectedlab/platform-for-science-developer-portal-beta/)
-- [Instrument API GitHub](https://github.com/thermofisherlsms/iapi)
+- [Documentation](https://www.thermofisher.com/us/en/home/digital-science/thermo-fisher-connect.html)
+- [Blog](https://www.thermofisher.com/blog/connectedlab/)
+- [Documentation](https://www.thermofisher.com/blog/connectedlab/platform-for-science-developer-portal-beta/)
+- [GitHub Repository](https://github.com/thermofisherlsms/iapi)
 - [GitHub Organization](https://github.com/thermofisherlsms)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
