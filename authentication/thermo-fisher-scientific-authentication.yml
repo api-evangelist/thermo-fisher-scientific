@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/thermo-fisher-samplemanager-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Session token obtained from the /mobile/login endpoint. Pass as "Bearer {token}"
+    in the Authorization header.
+  sources:
+  - openapi/thermo-fisher-samplemanager-openapi.yml

@@ -82,6 +82,10 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: DomainSecurity
+    url: security/thermo-fisher-scientific-domain-security.yml
+  - type: Authentication
+    url: authentication/thermo-fisher-scientific-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/thermo-fisher-scientific
   - name: Thermo Fisher Scientific Website
