@@ -82,6 +82,8 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: AgenticAccess
+    url: agentic-access/thermo-fisher-scientific-agentic-access.yml
   - type: DomainSecurity
     url: security/thermo-fisher-scientific-domain-security.yml
   - type: Authentication
