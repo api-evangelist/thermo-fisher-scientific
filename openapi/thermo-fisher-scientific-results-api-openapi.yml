@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Thermo Fisher NanoDrop Ultra Web Authentication Results API
+  description: The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data retrieval for the NanoDrop Ultra microvolume UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics integration, automated measurement workflows, sample data export, and instrument status monitoring.
+  version: 1.0.0
+  contact:
+    name: Thermo Fisher Scientific
+    url: https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/uv-vis-spectrophotometry/instruments/nanodrop.html
+  license:
+    name: Proprietary
+    url: https://www.thermofisher.com
+servers:
+- url: http://{instrument-ip}:{port}
+  description: NanoDrop Ultra instrument local network API
+  variables:
+    instrument-ip:
+      description: IP address of the NanoDrop Ultra instrument on the local network.
+      default: 192.168.1.100
+    port:
+      description: API port.
+      default: '8080'
+tags:
+- name: Results
+  description: Access test results and measurements.
+paths:
+  /mobile/samples/{sampleId}/results:
+    get:
+      operationId: getSampleResults
+      summary: Get Sample Results
+      description: Returns all test results associated with a specific sample.
+      tags:
+      - Results
+      parameters:
+      - name: sampleId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The sample identity/barcode.
+      responses:
+        '200':
+          description: Sample results returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultListResponse'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Sample not found.
+  /mobile/results:
+    post:
+      operationId: submitResults
+      summary: Submit Results
+      description: Submits test results for one or more samples. Triggers result entry workflows and validation in SampleManager.
+      tags:
+      - Results
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResultSubmitRequest'
+      responses:
+        '200':
+          description: Results submitted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Invalid result data.
+        '401':
+          description: Unauthorized.
+components:
+  schemas:
+    ResultListResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+    ResultSubmitRequest:
+      type: object
+      properties:
+        sample_id:
+          type: string
+          description: Target sample identity.
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              test:
+                type: string
+              component:
+                type: string
+              result_value:
+                type: string
+              units:
+                type: string
+    Result:
+      type: object
+      properties:
+        sample_id:
+          type: string
+          description: Parent sample identity.
+        test:
+          type: string
+          description: Test identity.
+        component:
+          type: string
+          description: Component being measured.
+        result_value:
+          type: string
+          description: The result value (string to support text and numeric results).
+        units:
+          type: string
+          description: Unit of measurement.
+        status:
+          type: string
+          description: Result status code.
+        entered_on:
+          type: string
+          format: date-time
+          description: When the result was entered.
+        entered_by:
+          type: string
+          description: User who entered the result.
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string

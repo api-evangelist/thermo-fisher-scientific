@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: Thermo Fisher NanoDrop Ultra Web Authentication Workflows API
+  description: The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data retrieval for the NanoDrop Ultra microvolume UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics integration, automated measurement workflows, sample data export, and instrument status monitoring.
+  version: 1.0.0
+  contact:
+    name: Thermo Fisher Scientific
+    url: https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/uv-vis-spectrophotometry/instruments/nanodrop.html
+  license:
+    name: Proprietary
+    url: https://www.thermofisher.com
+servers:
+- url: http://{instrument-ip}:{port}
+  description: NanoDrop Ultra instrument local network API
+  variables:
+    instrument-ip:
+      description: IP address of the NanoDrop Ultra instrument on the local network.
+      default: 192.168.1.100
+    port:
+      description: API port.
+      default: '8080'
+tags:
+- name: Workflows
+  description: Trigger and manage laboratory workflows.
+paths:
+  /mobile/workflows/{workflowName}/trigger:
+    post:
+      operationId: triggerWorkflow
+      summary: Trigger Workflow
+      description: Triggers a named workflow in SampleManager, passing optional parameters to the workflow.
+      tags:
+      - Workflows
+      parameters:
+      - name: workflowName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the SampleManager workflow to trigger.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkflowTriggerRequest'
+      responses:
+        '200':
+          description: Workflow triggered successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowTriggerResponse'
+        '400':
+          description: Invalid workflow parameters.
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Workflow not found.
+components:
+  schemas:
+    WorkflowTriggerResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        workflow_id:
+          type: string
+          description: Identifier of the triggered workflow instance.
+        message:
+          type: string
+    WorkflowTriggerRequest:
+      type: object
+      description: Optional parameters to pass to the workflow.
+      additionalProperties: true

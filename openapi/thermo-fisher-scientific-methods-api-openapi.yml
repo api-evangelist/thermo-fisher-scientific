@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: Thermo Fisher NanoDrop Ultra Web Authentication Methods API
+  description: The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data retrieval for the NanoDrop Ultra microvolume UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics integration, automated measurement workflows, sample data export, and instrument status monitoring.
+  version: 1.0.0
+  contact:
+    name: Thermo Fisher Scientific
+    url: https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/uv-vis-spectrophotometry/instruments/nanodrop.html
+  license:
+    name: Proprietary
+    url: https://www.thermofisher.com
+servers:
+- url: http://{instrument-ip}:{port}
+  description: NanoDrop Ultra instrument local network API
+  variables:
+    instrument-ip:
+      description: IP address of the NanoDrop Ultra instrument on the local network.
+      default: 192.168.1.100
+    port:
+      description: API port.
+      default: '8080'
+tags:
+- name: Methods
+  description: Measurement method configuration.
+paths:
+  /api/methods:
+    get:
+      operationId: getMethods
+      summary: Get Methods
+      description: Returns a list of available measurement methods configured on the instrument.
+      tags:
+      - Methods
+      responses:
+        '200':
+          description: Methods list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodListResponse'
+components:
+  schemas:
+    MethodListResponse:
+      type: object
+      properties:
+        methods:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Method name.
+              type:
+                type: string
+                enum:
+                - nucleic_acid
+                - protein
+                - fluorescence
+                - custom
+                description: Method category.
+              description:
+                type: string
+              wavelength:
+                type: integer
+                description: Primary measurement wavelength (nm).

@@ -1,0 +1,70 @@
+openapi: 3.1.0
+info:
+  title: Thermo Fisher NanoDrop Ultra Web Authentication Instrument API
+  description: The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data retrieval for the NanoDrop Ultra microvolume UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics integration, automated measurement workflows, sample data export, and instrument status monitoring.
+  version: 1.0.0
+  contact:
+    name: Thermo Fisher Scientific
+    url: https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/uv-vis-spectrophotometry/instruments/nanodrop.html
+  license:
+    name: Proprietary
+    url: https://www.thermofisher.com
+servers:
+- url: http://{instrument-ip}:{port}
+  description: NanoDrop Ultra instrument local network API
+  variables:
+    instrument-ip:
+      description: IP address of the NanoDrop Ultra instrument on the local network.
+      default: 192.168.1.100
+    port:
+      description: API port.
+      default: '8080'
+tags:
+- name: Instrument
+  description: Instrument status and control.
+paths:
+  /api/status:
+    get:
+      operationId: getInstrumentStatus
+      summary: Get Instrument Status
+      description: Returns the current status and readiness of the NanoDrop Ultra instrument.
+      tags:
+      - Instrument
+      responses:
+        '200':
+          description: Instrument status returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstrumentStatus'
+        '503':
+          description: Instrument not available.
+components:
+  schemas:
+    InstrumentStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ready
+          - busy
+          - error
+          - initializing
+          - offline
+          description: Current instrument state.
+        model:
+          type: string
+          description: Instrument model name.
+        serial_number:
+          type: string
+          description: Instrument serial number.
+        firmware_version:
+          type: string
+          description: Current firmware version.
+        lamp_hours:
+          type: number
+          description: Total lamp operating hours.
+        pedestal_status:
+          type: string
+          description: Status of the measurement pedestal.

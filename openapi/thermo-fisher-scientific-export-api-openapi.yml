@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  title: Thermo Fisher NanoDrop Ultra Web Authentication Export API
+  description: The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data retrieval for the NanoDrop Ultra microvolume UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics integration, automated measurement workflows, sample data export, and instrument status monitoring.
+  version: 1.0.0
+  contact:
+    name: Thermo Fisher Scientific
+    url: https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/uv-vis-spectrophotometry/instruments/nanodrop.html
+  license:
+    name: Proprietary
+    url: https://www.thermofisher.com
+servers:
+- url: http://{instrument-ip}:{port}
+  description: NanoDrop Ultra instrument local network API
+  variables:
+    instrument-ip:
+      description: IP address of the NanoDrop Ultra instrument on the local network.
+      default: 192.168.1.100
+    port:
+      description: API port.
+      default: '8080'
+tags:
+- name: Export
+  description: Data export operations.
+paths:
+  /api/export:
+    post:
+      operationId: exportMeasurements
+      summary: Export Measurements
+      description: Exports measurement data in the specified format (CSV, JSON, XML) for integration with LIMS or other laboratory informatics systems.
+      tags:
+      - Export
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRequest'
+      responses:
+        '200':
+          description: Export data returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportResponse'
+            text/csv:
+              schema:
+                type: string
+        '400':
+          description: Invalid export parameters.
+components:
+  schemas:
+    ExportResponse:
+      type: object
+      properties:
+        format:
+          type: string
+        count:
+          type: integer
+          description: Number of measurements exported.
+        data:
+          type: object
+          description: Exported measurement data (when format is json).
+    ExportRequest:
+      type: object
+      properties:
+        format:
+          type: string
+          enum:
+          - json
+          - csv
+          - xml
+          default: json
+          description: Export format.
+        from_date:
+          type: string
+          format: date
+        to_date:
+          type: string
+          format: date
+        measurement_ids:
+          type: array
+          items:
+            type: string
+          description: Specific measurement IDs to export.
