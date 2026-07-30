@@ -1,63 +1,177 @@
 aid: thermo-fisher-scientific
 url: https://raw.githubusercontent.com/api-evangelist/thermo-fisher-scientific/refs/heads/main/apis.yml
 apis:
-  - aid: thermo-fisher-scientific:samplemanager-lims
-    name: Thermo Fisher SampleManager LIMS REST API
-    tags:
-      - LIMS
-      - Laboratory
-      - Life Sciences
-      - Sample Management
-      - REST API
-    humanURL: >-
+- aid: thermo-fisher-scientific:connect-platform
+  name: Thermo Fisher Connect Platform OData API
+  tags:
+  - Platform
+  - OData
+  - Laboratory
+  - Life Sciences
+  - Integration
+  humanURL: https://www.thermofisher.com/us/en/home/digital-science/thermo-fisher-connect.html
+  baseURL: https://api.thermofisher.com
+  properties:
+  - url: >-
+      https://www.thermofisher.com/blog/connectedlab/platform-for-science-developer-portal-beta/
+    type: Documentation
+  description: >-
+    The Thermo Fisher Connect Platform OData API provides standards-based interoperability for laboratory
+    data management, enabling integration between instruments, LIMS, ELN, and enterprise systems through
+    the OData REST protocol.
+- aid: thermo-fisher-scientific:thermo-fisher-scientific-authentication-api
+  name: Thermo Fisher Scientific Authentication API
+  description: Token-based authentication operations.
+  humanURL: >-
+    https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  baseURL: https://{your-server}:{port}/smpwcfrestvgsm
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/thermo-fisher-scientific-authentication-api-openapi.yml
+  - type: Documentation
+    url: >-
       https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
-    baseURL: https://{your-server}:{port}/smpwcfrestvgsm
-    properties:
-      - url: >-
-          https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
-        type: Documentation
-      - url: openapi/thermo-fisher-samplemanager-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Thermo Scientific SampleManager LIMS REST API enables secure connection between software applications and the
-      SampleManager LIMS system for simplified data exchange. Provides access to sample data, workflows, entities,
-      results, and laboratory operations. Runs on port 56105 and supports token authentication.
-  - aid: thermo-fisher-scientific:nanodrop-ultra
-    name: Thermo Fisher NanoDrop Ultra Web API
-    tags:
-      - Spectrophotometry
-      - Laboratory Instruments
-      - Life Sciences
-      - REST API
-      - UV-Vis
-    humanURL: https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
-    baseURL: https://{nanodrop-instrument-ip}
-    properties:
-      - url: https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
-        type: Documentation
-      - url: openapi/thermo-fisher-nanodrop-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data export for the
-      NanoDrop Ultra microvolume UV-Vis spectrophotometer. Enables laboratory informatics integration, automated
-      measurement workflows, and data retrieval from the instrument.
-  - aid: thermo-fisher-scientific:connect-platform
-    name: Thermo Fisher Connect Platform OData API
-    tags:
-      - Platform
-      - OData
-      - Laboratory
-      - Life Sciences
-      - Integration
-    humanURL: https://www.thermofisher.com/us/en/home/digital-science/thermo-fisher-connect.html
-    baseURL: https://api.thermofisher.com
-    properties:
-      - url: https://www.thermofisher.com/blog/connectedlab/platform-for-science-developer-portal-beta/
-        type: Documentation
-    description: >-
-      The Thermo Fisher Connect Platform OData API provides standards-based interoperability for laboratory data
-      management, enabling integration between instruments, LIMS, ELN, and enterprise systems through the OData REST
-      protocol.
+  - type: Documentation
+    url: >-
+      https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
+- aid: thermo-fisher-scientific:thermo-fisher-scientific-entities-api
+  name: Thermo Fisher Scientific Entities API
+  description: Browse entity data from SampleManager.
+  humanURL: >-
+    https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  baseURL: https://{your-server}:{port}/smpwcfrestvgsm
+  tags:
+  - Entities
+  properties:
+  - type: OpenAPI
+    url: openapi/thermo-fisher-scientific-entities-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  - type: Documentation
+    url: >-
+      https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
+- aid: thermo-fisher-scientific:thermo-fisher-scientific-export-api
+  name: Thermo Fisher Scientific Export API
+  description: Data export operations.
+  humanURL: >-
+    https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  baseURL: https://{your-server}:{port}/smpwcfrestvgsm
+  tags:
+  - Export
+  properties:
+  - type: OpenAPI
+    url: openapi/thermo-fisher-scientific-export-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  - type: Documentation
+    url: >-
+      https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
+- aid: thermo-fisher-scientific:thermo-fisher-scientific-instrument-api
+  name: Thermo Fisher Scientific Instrument API
+  description: Instrument status and control.
+  humanURL: >-
+    https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  baseURL: https://{your-server}:{port}/smpwcfrestvgsm
+  tags:
+  - Instrument
+  properties:
+  - type: OpenAPI
+    url: openapi/thermo-fisher-scientific-instrument-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  - type: Documentation
+    url: >-
+      https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
+- aid: thermo-fisher-scientific:thermo-fisher-scientific-measurements-api
+  name: Thermo Fisher Scientific Measurements API
+  description: Sample measurements and spectra.
+  humanURL: >-
+    https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  baseURL: https://{your-server}:{port}/smpwcfrestvgsm
+  tags:
+  - Measurements
+  properties:
+  - type: OpenAPI
+    url: openapi/thermo-fisher-scientific-measurements-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  - type: Documentation
+    url: >-
+      https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
+- aid: thermo-fisher-scientific:thermo-fisher-scientific-methods-api
+  name: Thermo Fisher Scientific Methods API
+  description: Measurement method configuration.
+  humanURL: >-
+    https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  baseURL: https://{your-server}:{port}/smpwcfrestvgsm
+  tags:
+  - Methods
+  properties:
+  - type: OpenAPI
+    url: openapi/thermo-fisher-scientific-methods-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  - type: Documentation
+    url: >-
+      https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
+- aid: thermo-fisher-scientific:thermo-fisher-scientific-results-api
+  name: Thermo Fisher Scientific Results API
+  description: Access test results and measurements.
+  humanURL: >-
+    https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  baseURL: https://{your-server}:{port}/smpwcfrestvgsm
+  tags:
+  - Results
+  properties:
+  - type: OpenAPI
+    url: openapi/thermo-fisher-scientific-results-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  - type: Documentation
+    url: >-
+      https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
+- aid: thermo-fisher-scientific:thermo-fisher-scientific-samples-api
+  name: Thermo Fisher Scientific Samples API
+  description: Access and manage laboratory samples.
+  humanURL: >-
+    https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  baseURL: https://{your-server}:{port}/smpwcfrestvgsm
+  tags:
+  - Samples
+  properties:
+  - type: OpenAPI
+    url: openapi/thermo-fisher-scientific-samples-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  - type: Documentation
+    url: >-
+      https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
+- aid: thermo-fisher-scientific:thermo-fisher-scientific-workflows-api
+  name: Thermo Fisher Scientific Workflows API
+  description: Trigger and manage laboratory workflows.
+  humanURL: >-
+    https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  baseURL: https://{your-server}:{port}/smpwcfrestvgsm
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/thermo-fisher-scientific-workflows-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
+  - type: Documentation
+    url: >-
+      https://documents.thermofisher.com/TFS-Assets/CAD/manuals/nanodrop-ultra-api-reference-manual-m024.pdf
 name: Thermo Fisher Scientific
 tags:
   - Life Sciences
@@ -68,7 +182,20 @@ tags:
   - Biosciences
   - Fortune 500
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/thermo-fisher-scientific.png
 access: 3rd-Party
 created: '2026-03-21'
 modified: '2026-05-19'
