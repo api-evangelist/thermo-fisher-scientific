@@ -1,0 +1,366 @@
+openapi: 3.1.0
+info:
+  title: Thermo Fisher NanoDrop Ultra Web API
+  description: >-
+    The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to
+    instrument control and data retrieval for the NanoDrop Ultra microvolume
+    UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics
+    integration, automated measurement workflows, sample data export, and
+    instrument status monitoring.
+  version: 1.0.0
+  contact:
+    name: Thermo Fisher Scientific
+    url: https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/uv-vis-spectrophotometry/instruments/nanodrop.html
+  license:
+    name: Proprietary
+    url: https://www.thermofisher.com
+servers:
+  - url: http://{instrument-ip}:{port}
+    description: NanoDrop Ultra instrument local network API
+    variables:
+      instrument-ip:
+        description: IP address of the NanoDrop Ultra instrument on the local network.
+        default: 192.168.1.100
+      port:
+        description: API port.
+        default: "8080"
+tags:
+  - name: Instrument
+    description: Instrument status and control.
+  - name: Measurements
+    description: Sample measurements and spectra.
+  - name: Methods
+    description: Measurement method configuration.
+  - name: Export
+    description: Data export operations.
+paths:
+  /api/status:
+    get:
+      operationId: getInstrumentStatus
+      summary: Get Instrument Status
+      description: Returns the current status and readiness of the NanoDrop Ultra instrument.
+      tags:
+        - Instrument
+      responses:
+        '200':
+          description: Instrument status returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstrumentStatus'
+        '503':
+          description: Instrument not available.
+
+  /api/measure:
+    post:
+      operationId: performMeasurement
+      summary: Perform Measurement
+      description: >-
+        Initiates a sample measurement on the NanoDrop Ultra instrument using
+        the specified method. The instrument must have a sample loaded on the
+        pedestal before calling this endpoint.
+      tags:
+        - Measurements
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeasurementRequest'
+      responses:
+        '200':
+          description: Measurement completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasurementResult'
+        '400':
+          description: Invalid measurement request.
+        '503':
+          description: Instrument busy or not ready.
+
+  /api/measurements:
+    get:
+      operationId: getMeasurements
+      summary: Get Measurements
+      description: >-
+        Retrieves a list of stored measurements from the NanoDrop Ultra
+        database. Supports filtering by date, sample ID, and method.
+      tags:
+        - Measurements
+      parameters:
+        - name: from_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter measurements from this date.
+        - name: to_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter measurements to this date.
+        - name: method
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by measurement method name.
+        - name: sample_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by sample identifier.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 100
+          description: Maximum number of records to return.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset.
+      responses:
+        '200':
+          description: Measurement list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasurementListResponse'
+
+  /api/measurements/{measurementId}:
+    get:
+      operationId: getMeasurementById
+      summary: Get Measurement By ID
+      description: Returns the full measurement data including spectrum for a specific measurement.
+      tags:
+        - Measurements
+      parameters:
+        - name: measurementId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique measurement identifier.
+      responses:
+        '200':
+          description: Measurement data returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasurementResult'
+        '404':
+          description: Measurement not found.
+
+  /api/methods:
+    get:
+      operationId: getMethods
+      summary: Get Methods
+      description: Returns a list of available measurement methods configured on the instrument.
+      tags:
+        - Methods
+      responses:
+        '200':
+          description: Methods list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodListResponse'
+
+  /api/export:
+    post:
+      operationId: exportMeasurements
+      summary: Export Measurements
+      description: >-
+        Exports measurement data in the specified format (CSV, JSON, XML)
+        for integration with LIMS or other laboratory informatics systems.
+      tags:
+        - Export
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRequest'
+      responses:
+        '200':
+          description: Export data returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportResponse'
+            text/csv:
+              schema:
+                type: string
+        '400':
+          description: Invalid export parameters.
+
+components:
+  schemas:
+    InstrumentStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ready, busy, error, initializing, offline]
+          description: Current instrument state.
+        model:
+          type: string
+          description: Instrument model name.
+        serial_number:
+          type: string
+          description: Instrument serial number.
+        firmware_version:
+          type: string
+          description: Current firmware version.
+        lamp_hours:
+          type: number
+          description: Total lamp operating hours.
+        pedestal_status:
+          type: string
+          description: Status of the measurement pedestal.
+
+    MeasurementRequest:
+      type: object
+      required: [method]
+      properties:
+        method:
+          type: string
+          description: Name of the measurement method to use.
+        sample_id:
+          type: string
+          description: Sample identifier to associate with the measurement.
+        sample_name:
+          type: string
+          description: Sample display name.
+        operator:
+          type: string
+          description: Operator name.
+        notes:
+          type: string
+          description: Optional measurement notes.
+
+    MeasurementResult:
+      type: object
+      properties:
+        measurement_id:
+          type: string
+          description: Unique measurement identifier.
+        sample_id:
+          type: string
+          description: Sample identifier.
+        sample_name:
+          type: string
+          description: Sample display name.
+        method:
+          type: string
+          description: Measurement method used.
+        timestamp:
+          type: string
+          format: date-time
+          description: Measurement timestamp.
+        operator:
+          type: string
+          description: Operator who performed the measurement.
+        concentration:
+          type: number
+          description: Calculated concentration (ng/µL or µg/mL depending on method).
+        unit:
+          type: string
+          description: Concentration unit.
+        a260:
+          type: number
+          description: Absorbance at 260 nm.
+        a280:
+          type: number
+          description: Absorbance at 280 nm.
+        a260_a280_ratio:
+          type: number
+          description: A260/A280 purity ratio.
+        a260_a230_ratio:
+          type: number
+          description: A260/A230 purity ratio.
+        spectrum:
+          type: array
+          description: Full UV-Vis absorbance spectrum data points.
+          items:
+            type: object
+            properties:
+              wavelength:
+                type: number
+                description: Wavelength in nm.
+              absorbance:
+                type: number
+                description: Absorbance value.
+
+    MeasurementListResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        measurements:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeasurementResult'
+
+    MethodListResponse:
+      type: object
+      properties:
+        methods:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Method name.
+              type:
+                type: string
+                enum: [nucleic_acid, protein, fluorescence, custom]
+                description: Method category.
+              description:
+                type: string
+              wavelength:
+                type: integer
+                description: Primary measurement wavelength (nm).
+
+    ExportRequest:
+      type: object
+      properties:
+        format:
+          type: string
+          enum: [json, csv, xml]
+          default: json
+          description: Export format.
+        from_date:
+          type: string
+          format: date
+        to_date:
+          type: string
+          format: date
+        measurement_ids:
+          type: array
+          items:
+            type: string
+          description: Specific measurement IDs to export.
+
+    ExportResponse:
+      type: object
+      properties:
+        format:
+          type: string
+        count:
+          type: integer
+          description: Number of measurements exported.
+        data:
+          type: object
+          description: Exported measurement data (when format is json).

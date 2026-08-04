@@ -1,0 +1,30 @@
+{
+  "provider": "thermo-fisher-scientific",
+  "sources": [
+    "thermo-fisher-scientific-authentication-api-openapi.yml",
+    "thermo-fisher-scientific-entities-api-openapi.yml",
+    "thermo-fisher-scientific-export-api-openapi.yml",
+    "thermo-fisher-scientific-instrument-api-openapi.yml",
+    "thermo-fisher-scientific-measurements-api-openapi.yml",
+    "thermo-fisher-scientific-methods-api-openapi.yml",
+    "thermo-fisher-scientific-results-api-openapi.yml",
+    "thermo-fisher-scientific-samples-api-openapi.yml",
+    "thermo-fisher-scientific-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "thermo-fisher-scientific-authentication-api-openapi.yml",
+    "thermo-fisher-scientific-entities-api-openapi.yml",
+    "thermo-fisher-scientific-export-api-openapi.yml",
+    "thermo-fisher-scientific-instrument-api-openapi.yml",
+    "thermo-fisher-scientific-measurements-api-openapi.yml",
+    "thermo-fisher-scientific-methods-api-openapi.yml",
+    "thermo-fisher-scientific-results-api-openapi.yml",
+    "thermo-fisher-scientific-samples-api-openapi.yml",
+    "thermo-fisher-scientific-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
