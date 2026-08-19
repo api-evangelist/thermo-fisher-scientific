@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thermo Fisher NanoDrop Ultra Web Authentication Entities API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Browse Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/mobile/browses/:entity",
+            "params": [
+              {
+                "name": "entity",
+                "value": "",
+                "type": "path",
+                "description": "The SampleManager entity name (e.g., SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+              },
+              {
+                "name": "criteria",
+                "value": "",
+                "type": "query",
+                "description": "Filter criteria using SampleManager query syntax (e.g., STATUS='A' AND SAMPLED_DATE > '2026-01-01')."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by."
+              },
+              {
+                "name": "ascending",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "pagesize",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)."
+              }
+            ]
+          },
+          "docs": "Returns a list of records for the specified SampleManager entity (e.g., SAMPLE, TEST, RESULT, CUSTOMER). Supports filtering and sorting."
+        },
+        {
+          "info": {
+            "name": "Get Entity By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/mobile/browses/:entity/:id",
+            "params": [
+              {
+                "name": "entity",
+                "value": "",
+                "type": "path",
+                "description": "The SampleManager entity name."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The record identity (primary key value)."
+              }
+            ]
+          },
+          "docs": "Returns a single record for the specified entity and record identity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

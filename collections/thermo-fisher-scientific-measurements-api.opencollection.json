@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thermo Fisher NanoDrop Ultra Web Authentication Measurements API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Measurements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Perform Measurement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{instrument-ip}:{port}/api/measure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a sample measurement on the NanoDrop Ultra instrument using the specified method. The instrument must have a sample loaded on the pedestal before calling this endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Measurements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/api/measurements",
+            "params": [
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter measurements from this date."
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter measurements to this date."
+              },
+              {
+                "name": "method",
+                "value": "",
+                "type": "query",
+                "description": "Filter by measurement method name."
+              },
+              {
+                "name": "sample_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sample identifier."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of stored measurements from the NanoDrop Ultra database. Supports filtering by date, sample ID, and method."
+        },
+        {
+          "info": {
+            "name": "Get Measurement By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/api/measurements/:measurementId",
+            "params": [
+              {
+                "name": "measurementId",
+                "value": "",
+                "type": "path",
+                "description": "The unique measurement identifier."
+              }
+            ]
+          },
+          "docs": "Returns the full measurement data including spectrum for a specific measurement."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

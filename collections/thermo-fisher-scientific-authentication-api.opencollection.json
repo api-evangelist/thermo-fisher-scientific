@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thermo Fisher NanoDrop Ultra Web Authentication API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{instrument-ip}:{port}/mobile/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates a user and returns a session token for subsequent API calls. Token must be included in the Authorization header."
+        },
+        {
+          "info": {
+            "name": "Logout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{instrument-ip}:{port}/mobile/logout"
+          },
+          "docs": "Invalidates the current session token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

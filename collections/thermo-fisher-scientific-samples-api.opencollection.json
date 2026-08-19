@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thermo Fisher NanoDrop Ultra Web Authentication Samples API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Samples",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Samples",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/mobile/samples",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Sample status filter (A=Authorized, C=Completed, X=Cancelled, L=Login pending)."
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter samples from this date (YYYY-MM-DD)."
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter samples to this date (YYYY-MM-DD)."
+              },
+              {
+                "name": "pagesize",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              }
+            ]
+          },
+          "docs": "Returns a list of laboratory samples accessible to the authenticated user. Supports filtering by status, date range, and other criteria."
+        },
+        {
+          "info": {
+            "name": "Get Sample By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/mobile/samples/:sampleId",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path",
+                "description": "The sample identity/barcode."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific laboratory sample."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

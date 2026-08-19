@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thermo Fisher NanoDrop Ultra Web Authentication Results API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Sample Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{instrument-ip}:{port}/mobile/samples/:sampleId/results",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path",
+                "description": "The sample identity/barcode."
+              }
+            ]
+          },
+          "docs": "Returns all test results associated with a specific sample."
+        },
+        {
+          "info": {
+            "name": "Submit Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{instrument-ip}:{port}/mobile/results",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits test results for one or more samples. Triggers result entry workflows and validation in SampleManager."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

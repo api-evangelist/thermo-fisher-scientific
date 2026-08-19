@@ -1,0 +1,191 @@
+{
+  "item": [
+    {
+      "id": "001fe0fc-ebcc-49c5-982d-e20b4680db30",
+      "name": "Instrument",
+      "description": {
+        "content": "Instrument status and control.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b8d62b87-a2b2-4f42-a349-c6c00542e2c2",
+          "name": "Get Instrument Status",
+          "request": {
+            "name": "Get Instrument Status",
+            "description": {
+              "content": "Returns the current status and readiness of the NanoDrop Ultra instrument.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                  "type": "any",
+                  "value": "{{instrument-ip}}",
+                  "key": "instrument-ip"
+                },
+                {
+                  "description": "API port.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ce2c417-a43c-4510-a9e7-6d06574f446f",
+              "name": "Instrument status returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"busy\",\n  \"model\": \"string\",\n  \"serial_number\": \"string\",\n  \"firmware_version\": \"string\",\n  \"lamp_hours\": 890.1435901012877,\n  \"pedestal_status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48c5c8cd-6481-4333-b19f-8d5706799b64",
+              "name": "Instrument not available.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "IP address of the NanoDrop Ultra instrument on the local network.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "192.168.1.100",
+      "key": "instrument-ip"
+    },
+    {
+      "description": {
+        "content": "API port.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8080",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "http://{{instrument-ip}}:{{port}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "03b9fa5b-8e2f-44b4-a69f-e497b658208e",
+    "name": "Thermo Fisher NanoDrop Ultra Web Authentication Instrument API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data retrieval for the NanoDrop Ultra microvolume UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics integration, automated measurement workflows, sample data export, and instrument status monitoring.\n\nContact Support:\n Name: Thermo Fisher Scientific",
+      "type": "text/plain"
+    }
+  }
+}

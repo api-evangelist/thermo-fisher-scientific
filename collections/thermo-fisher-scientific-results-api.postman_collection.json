@@ -1,0 +1,491 @@
+{
+  "item": [
+    {
+      "id": "e29cbd02-4e60-409e-9e0b-d0bc1c9d4f8a",
+      "name": "Results",
+      "description": {
+        "content": "Access test results and measurements.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8e920fa0-5b6b-4d65-a273-a9d3410f6c20",
+          "name": "Get Sample Results",
+          "request": {
+            "name": "Get Sample Results",
+            "description": {
+              "content": "Returns all test results associated with a specific sample.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "samples",
+                ":sampleId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleId",
+                  "description": "(Required) The sample identity/barcode."
+                },
+                {
+                  "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                  "type": "any",
+                  "value": "{{instrument-ip}}",
+                  "key": "instrument-ip"
+                },
+                {
+                  "description": "API port.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "108e2b9c-f497-4632-9916-bef7f1f75eb5",
+              "name": "Sample results returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples",
+                    ":sampleId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The sample identity/barcode."
+                    },
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 7869,\n  \"results\": [\n    {\n      \"sample_id\": \"string\",\n      \"test\": \"string\",\n      \"component\": \"string\",\n      \"result_value\": \"string\",\n      \"units\": \"string\",\n      \"status\": \"string\",\n      \"entered_on\": \"1954-10-02T06:55:28.165Z\",\n      \"entered_by\": \"string\"\n    },\n    {\n      \"sample_id\": \"string\",\n      \"test\": \"string\",\n      \"component\": \"string\",\n      \"result_value\": \"string\",\n      \"units\": \"string\",\n      \"status\": \"string\",\n      \"entered_on\": \"2015-01-15T10:59:44.524Z\",\n      \"entered_by\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04f6ddd3-9c59-440f-b6e9-1cd12b404332",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples",
+                    ":sampleId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The sample identity/barcode."
+                    },
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e01cfc89-c61b-41f6-8ab1-e52b07d5971b",
+              "name": "Sample not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "samples",
+                    ":sampleId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The sample identity/barcode."
+                    },
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0eddc04b-4682-4bf4-9f7c-6450faecb103",
+          "name": "Submit Results",
+          "request": {
+            "name": "Submit Results",
+            "description": {
+              "content": "Submits test results for one or more samples. Triggers result entry workflows and validation in SampleManager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                  "type": "any",
+                  "value": "{{instrument-ip}}",
+                  "key": "instrument-ip"
+                },
+                {
+                  "description": "API port.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sample_id\": \"<string>\",\n  \"results\": [\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    },\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6b371824-a793-4ecb-8e62-5ec0875488bb",
+              "name": "Results submitted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sample_id\": \"<string>\",\n  \"results\": [\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    },\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9939420-5a65-4285-9576-9e93a57de8c5",
+              "name": "Invalid result data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sample_id\": \"<string>\",\n  \"results\": [\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    },\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "100e3939-58c1-4804-ae90-6163e0d6ecf2",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sample_id\": \"<string>\",\n  \"results\": [\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    },\n    {\n      \"test\": \"<string>\",\n      \"component\": \"<string>\",\n      \"result_value\": \"<string>\",\n      \"units\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "IP address of the NanoDrop Ultra instrument on the local network.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "192.168.1.100",
+      "key": "instrument-ip"
+    },
+    {
+      "description": {
+        "content": "API port.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8080",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "http://{{instrument-ip}}:{{port}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c29d4bde-a428-45a3-8842-29a509d1715e",
+    "name": "Thermo Fisher NanoDrop Ultra Web Authentication Results API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data retrieval for the NanoDrop Ultra microvolume UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics integration, automated measurement workflows, sample data export, and instrument status monitoring.\n\nContact Support:\n Name: Thermo Fisher Scientific",
+      "type": "text/plain"
+    }
+  }
+}

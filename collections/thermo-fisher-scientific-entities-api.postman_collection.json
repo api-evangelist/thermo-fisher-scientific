@@ -1,0 +1,608 @@
+{
+  "item": [
+    {
+      "id": "99cb7363-6b67-409b-a2fa-001c288e7498",
+      "name": "Entities",
+      "description": {
+        "content": "Browse entity data from SampleManager.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a702070f-55ee-4529-9d47-109f5c67c01a",
+          "name": "Browse Entity",
+          "request": {
+            "name": "Browse Entity",
+            "description": {
+              "content": "Returns a list of records for the specified SampleManager entity (e.g., SAMPLE, TEST, RESULT, CUSTOMER). Supports filtering and sorting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "browses",
+                ":entity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "criteria",
+                  "value": "<string>",
+                  "description": "Filter criteria using SampleManager query syntax (e.g., STATUS='A' AND SAMPLED_DATE > '2026-01-01')."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Field name to sort results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "ascending",
+                  "value": "true",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "pagesize",
+                  "value": "50",
+                  "description": "Number of records per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entity",
+                  "description": "(Required) The SampleManager entity name (e.g., SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+                },
+                {
+                  "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                  "type": "any",
+                  "value": "{{instrument-ip}}",
+                  "key": "instrument-ip"
+                },
+                {
+                  "description": "API port.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b726147-5f43-406b-b499-c3ffdfc7c042",
+              "name": "Entity records returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "criteria",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ascending",
+                      "value": "true"
+                    },
+                    {
+                      "key": "pagesize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name (e.g., SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+                    },
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 5470,\n  \"page\": 449,\n  \"pagesize\": 399,\n  \"records\": [\n    {\n      \"identity\": \"string\",\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    {\n      \"identity\": \"string\",\n      \"key_0\": false,\n      \"key_1\": 4456.1403496369785\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45f03897-7aa2-4ed4-bd04-32723a89d06b",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "criteria",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ascending",
+                      "value": "true"
+                    },
+                    {
+                      "key": "pagesize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name (e.g., SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+                    },
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fc3c721d-60c7-4c83-b125-948f8807bca4",
+              "name": "Entity not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "criteria",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ascending",
+                      "value": "true"
+                    },
+                    {
+                      "key": "pagesize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name (e.g., SAMPLE, TEST, RESULT, CUSTOMER, BATCH_HEADER, ANALYSIS)."
+                    },
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c850f789-8ba3-4d8d-b7d2-ed5d8308f4f5",
+          "name": "Get Entity By ID",
+          "request": {
+            "name": "Get Entity By ID",
+            "description": {
+              "content": "Returns a single record for the specified entity and record identity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mobile",
+                "browses",
+                ":entity",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entity",
+                  "description": "(Required) The SampleManager entity name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The record identity (primary key value)."
+                },
+                {
+                  "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                  "type": "any",
+                  "value": "{{instrument-ip}}",
+                  "key": "instrument-ip"
+                },
+                {
+                  "description": "API port.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "948b7983-16a9-4373-9dad-f766a0878e74",
+              "name": "Entity record returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The record identity (primary key value)."
+                    },
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": \"string\",\n  \"key_0\": 1592,\n  \"key_1\": \"string\",\n  \"key_2\": 2746\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5faa6f14-70a0-4bc6-a4b3-e19ae9f5bb13",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The record identity (primary key value)."
+                    },
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cd5fca86-027c-46ff-80a4-828f5f402721",
+              "name": "Record not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mobile",
+                    "browses",
+                    ":entity",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity",
+                      "description": "(Required) The SampleManager entity name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The record identity (primary key value)."
+                    },
+                    {
+                      "description": "IP address of the NanoDrop Ultra instrument on the local network.",
+                      "type": "any",
+                      "value": "{{instrument-ip}}",
+                      "key": "instrument-ip"
+                    },
+                    {
+                      "description": "API port.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "IP address of the NanoDrop Ultra instrument on the local network.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "192.168.1.100",
+      "key": "instrument-ip"
+    },
+    {
+      "description": {
+        "content": "API port.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8080",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "http://{{instrument-ip}}:{{port}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "53e92e57-9700-446c-b260-5cf68b9b62ae",
+    "name": "Thermo Fisher NanoDrop Ultra Web Authentication Entities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data retrieval for the NanoDrop Ultra microvolume UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics integration, automated measurement workflows, sample data export, and instrument status monitoring.\n\nContact Support:\n Name: Thermo Fisher Scientific",
+      "type": "text/plain"
+    }
+  }
+}
