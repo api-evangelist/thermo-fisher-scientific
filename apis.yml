@@ -110,7 +110,8 @@ apis:
   humanURL: >-
     https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics/lab-information-management-systems-lims/solutions/samplemanager.html
   baseURL: https://{your-server}:{port}/smpwcfrestvgsm
-  tags:
+  tags: []
+  tags_raw:
   - Methods
   properties:
   - type: OpenAPI
