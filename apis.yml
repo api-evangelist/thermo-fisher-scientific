@@ -222,6 +222,9 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+  - type: CapabilityMap
+    url: capabilities/thermo-fisher-scientific-capability-edges.yml
+    name: Thermo Fisher Scientific Business Capability Map
   - type: AgenticAccess
     url: agentic-access/thermo-fisher-scientific-agentic-access.yml
   - type: DomainSecurity

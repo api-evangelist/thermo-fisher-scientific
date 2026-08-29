@@ -1,0 +1,25 @@
+slug: thermo-fisher-scientific
+provider: Thermo Fisher Scientific
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Healthcare Providers
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Samples
+  spec_file: thermo-fisher-scientific-samples-api-openapi.yml
+  capability_id: BC-2860.10
+  capability_id_l1: BC-2860
+  capability_name: Laboratory Services Management
+  confidence: 0.7
+  evidence: 'GET /mobile/samples ''Get Samples''; description: ''connection ... for the SampleManager
+    Laboratory Information Management System ... access to sample data'''
+  reason: Sample/specimen records in a LIMS are laboratory specimen and information management, matching
+    Laboratory Services Management.
