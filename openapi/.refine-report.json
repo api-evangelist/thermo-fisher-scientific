@@ -1,23 +1,16 @@
 {
   "provider": "thermo-fisher-scientific",
   "sources": [
-    "thermo-fisher-scientific-authentication-api-openapi.yml",
-    "thermo-fisher-scientific-entities-api-openapi.yml",
-    "thermo-fisher-scientific-export-api-openapi.yml",
-    "thermo-fisher-scientific-instrument-api-openapi.yml",
-    "thermo-fisher-scientific-measurements-api-openapi.yml",
-    "thermo-fisher-scientific-methods-api-openapi.yml",
-    "thermo-fisher-scientific-results-api-openapi.yml",
-    "thermo-fisher-scientific-samples-api-openapi.yml",
-    "thermo-fisher-scientific-workflows-api-openapi.yml"
+    "_original/thermo-fisher-nanodrop-openapi.yml",
+    "_original/thermo-fisher-samplemanager-openapi.yml"
   ],
   "outputs": [
-    "thermo-fisher-scientific-authentication-api-openapi.yml",
-    "thermo-fisher-scientific-entities-api-openapi.yml",
     "thermo-fisher-scientific-export-api-openapi.yml",
     "thermo-fisher-scientific-instrument-api-openapi.yml",
     "thermo-fisher-scientific-measurements-api-openapi.yml",
     "thermo-fisher-scientific-methods-api-openapi.yml",
+    "thermo-fisher-scientific-authentication-api-openapi.yml",
+    "thermo-fisher-scientific-entities-api-openapi.yml",
     "thermo-fisher-scientific-results-api-openapi.yml",
     "thermo-fisher-scientific-samples-api-openapi.yml",
     "thermo-fisher-scientific-workflows-api-openapi.yml"
@@ -25,6 +18,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "thermo-fisher-nanodrop-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "thermo-fisher-samplemanager-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "thermo-fisher-scientific-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thermo-fisher-scientific-entities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thermo-fisher-scientific-export-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thermo-fisher-scientific-instrument-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thermo-fisher-scientific-measurements-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thermo-fisher-scientific-methods-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thermo-fisher-scientific-results-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thermo-fisher-scientific-samples-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thermo-fisher-scientific-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

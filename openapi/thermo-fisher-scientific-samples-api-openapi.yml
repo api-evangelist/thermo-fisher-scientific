@@ -1,24 +1,26 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Thermo Fisher NanoDrop Ultra Web Authentication Samples API
-  description: The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data retrieval for the NanoDrop Ultra microvolume UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics integration, automated measurement workflows, sample data export, and instrument status monitoring.
-  version: 1.0.0
+  title: Thermo Fisher SampleManager LIMS REST Samples API
+  description: The Thermo Scientific SampleManager LIMS REST API enables secure connection between software applications and the SampleManager Laboratory Information Management System for simplified data exchange. Provides access to sample data, workflows, entity browsing, results, and laboratory operations. Supports token-based authentication with hardened session handling.
+  version: 21.3.0
   contact:
-    name: Thermo Fisher Scientific
-    url: https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/uv-vis-spectrophotometry/instruments/nanodrop.html
+    name: Thermo Fisher Scientific Digital Solutions
+    url: https://www.thermofisher.com/us/en/home/digital-solutions/lab-informatics.html
   license:
     name: Proprietary
     url: https://www.thermofisher.com
 servers:
-- url: http://{instrument-ip}:{port}
-  description: NanoDrop Ultra instrument local network API
+- url: https://{server}:{port}/smpwcfrestvgsm
+  description: SampleManager LIMS REST API Server
   variables:
-    instrument-ip:
-      description: IP address of the NanoDrop Ultra instrument on the local network.
-      default: 192.168.1.100
+    server:
+      description: The hostname of your SampleManager LIMS server.
+      default: localhost
     port:
-      description: API port.
-      default: '8080'
+      description: The port the SampleManager WCF service runs on.
+      default: '56105'
+security:
+- bearerAuth: []
 tags:
 - name: Samples
   description: Access and manage laboratory samples.
@@ -148,3 +150,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Sample'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Session token obtained from the /mobile/login endpoint. Pass as "Bearer {token}" in the Authorization header.

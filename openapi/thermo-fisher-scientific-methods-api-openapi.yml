@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Thermo Fisher NanoDrop Ultra Web Authentication Methods API
+  title: Thermo Fisher NanoDrop Ultra Web Methods API
   description: The Thermo Scientific NanoDrop Ultra Web API provides RESTful access to instrument control and data retrieval for the NanoDrop Ultra microvolume UV-Vis spectrophotometer and fluorometer. Enables laboratory informatics integration, automated measurement workflows, sample data export, and instrument status monitoring.
   version: 1.0.0
   contact:
