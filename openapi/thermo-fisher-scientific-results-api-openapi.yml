@@ -76,32 +76,6 @@ paths:
           description: Unauthorized.
 components:
   schemas:
-    ResultSubmitRequest:
-      type: object
-      properties:
-        sample_id:
-          type: string
-          description: Target sample identity.
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              test:
-                type: string
-              component:
-                type: string
-              result_value:
-                type: string
-              units:
-                type: string
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
     ResultListResponse:
       type: object
       properties:
@@ -111,6 +85,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result'
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
     Result:
       type: object
       properties:
@@ -139,6 +120,25 @@ components:
         entered_by:
           type: string
           description: User who entered the result.
+    ResultSubmitRequest:
+      type: object
+      properties:
+        sample_id:
+          type: string
+          description: Target sample identity.
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              test:
+                type: string
+              component:
+                type: string
+              result_value:
+                type: string
+              units:
+                type: string
   securitySchemes:
     bearerAuth:
       type: http

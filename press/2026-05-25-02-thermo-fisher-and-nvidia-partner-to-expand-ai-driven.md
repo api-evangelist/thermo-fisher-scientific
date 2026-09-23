@@ -1,7 +1,9 @@
 ---
 title: Thermo Fisher and NVIDIA Partner to Expand AI Driven ...
 url: https://www.chromatographyonline.com/view/thermo-fisher-and-nvidia-partner-to-expand-ai-driven-laboratory-automation
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Thermo Fisher Scientific" press release artificial intelligence'
 position: 2
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: News Details - Investors - Thermo Fisher Scientific
 url: https://ir.thermofisher.com/investors/news-events/news/news-details/2025/Thermo-Fisher-Scientific-to-Accelerate-Life-Science-Breakthroughs-with-OpenAI/default.aspx
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Thermo Fisher Scientific" press release artificial intelligence'
 position: 1
 source: serpapi-google

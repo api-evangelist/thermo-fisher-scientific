@@ -116,6 +116,14 @@ paths:
           description: Record not found.
 components:
   schemas:
+    EntityRecord:
+      type: object
+      description: A generic SampleManager entity record. Field names depend on the entity type.
+      additionalProperties: true
+      properties:
+        identity:
+          type: string
+          description: The primary key of the record.
     BrowseResponse:
       type: object
       properties:
@@ -132,14 +140,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EntityRecord'
-    EntityRecord:
-      type: object
-      description: A generic SampleManager entity record. Field names depend on the entity type.
-      additionalProperties: true
-      properties:
-        identity:
-          type: string
-          description: The primary key of the record.
   securitySchemes:
     bearerAuth:
       type: http

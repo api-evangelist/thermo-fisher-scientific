@@ -77,19 +77,6 @@ components:
           type: boolean
         message:
           type: string
-    LoginResponse:
-      type: object
-      properties:
-        token:
-          type: string
-          description: Session token for subsequent API calls.
-        expires:
-          type: string
-          format: date-time
-          description: Token expiration timestamp.
-        username:
-          type: string
-          description: Authenticated username.
     ErrorResponse:
       type: object
       properties:
@@ -112,6 +99,19 @@ components:
         instance:
           type: string
           description: SampleManager instance name (if multiple instances).
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Session token for subsequent API calls.
+        expires:
+          type: string
+          format: date-time
+          description: Token expiration timestamp.
+        username:
+          type: string
+          description: Authenticated username.
   securitySchemes:
     bearerAuth:
       type: http
