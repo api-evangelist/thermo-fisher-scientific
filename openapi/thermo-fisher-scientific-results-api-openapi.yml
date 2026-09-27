@@ -76,6 +76,13 @@ paths:
           description: Unauthorized.
 components:
   schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
     ResultListResponse:
       type: object
       properties:
@@ -85,13 +92,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result'
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
     Result:
       type: object
       properties:

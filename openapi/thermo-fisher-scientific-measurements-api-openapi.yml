@@ -127,6 +127,15 @@ paths:
           description: Measurement not found.
 components:
   schemas:
+    MeasurementListResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        measurements:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeasurementResult'
     MeasurementResult:
       type: object
       properties:
@@ -199,12 +208,3 @@ components:
         notes:
           type: string
           description: Optional measurement notes.
-    MeasurementListResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        measurements:
-          type: array
-          items:
-            $ref: '#/components/schemas/MeasurementResult'

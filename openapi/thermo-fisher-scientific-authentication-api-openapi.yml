@@ -70,20 +70,19 @@ paths:
           description: Unauthorized or token already expired.
 components:
   schemas:
-    SuccessResponse:
+    LoginResponse:
       type: object
       properties:
-        success:
-          type: boolean
-        message:
+        token:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
+          description: Session token for subsequent API calls.
+        expires:
           type: string
-        message:
+          format: date-time
+          description: Token expiration timestamp.
+        username:
           type: string
+          description: Authenticated username.
     LoginRequest:
       type: object
       required:
@@ -99,19 +98,20 @@ components:
         instance:
           type: string
           description: SampleManager instance name (if multiple instances).
-    LoginResponse:
+    ErrorResponse:
       type: object
       properties:
-        token:
+        error:
           type: string
-          description: Session token for subsequent API calls.
-        expires:
+        message:
           type: string
-          format: date-time
-          description: Token expiration timestamp.
-        username:
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
           type: string
-          description: Authenticated username.
   securitySchemes:
     bearerAuth:
       type: http
