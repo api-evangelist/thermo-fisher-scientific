@@ -83,6 +83,20 @@ components:
         username:
           type: string
           description: Authenticated username.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
     LoginRequest:
       type: object
       required:
@@ -98,20 +112,6 @@ components:
         instance:
           type: string
           description: SampleManager instance name (if multiple instances).
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -60,10 +60,6 @@ paths:
           description: Workflow not found.
 components:
   schemas:
-    WorkflowTriggerRequest:
-      type: object
-      description: Optional parameters to pass to the workflow.
-      additionalProperties: true
     WorkflowTriggerResponse:
       type: object
       properties:
@@ -74,6 +70,10 @@ components:
           description: Identifier of the triggered workflow instance.
         message:
           type: string
+    WorkflowTriggerRequest:
+      type: object
+      description: Optional parameters to pass to the workflow.
+      additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http

@@ -127,15 +127,26 @@ paths:
           description: Measurement not found.
 components:
   schemas:
-    MeasurementListResponse:
+    MeasurementRequest:
       type: object
+      required:
+      - method
       properties:
-        total:
-          type: integer
-        measurements:
-          type: array
-          items:
-            $ref: '#/components/schemas/MeasurementResult'
+        method:
+          type: string
+          description: Name of the measurement method to use.
+        sample_id:
+          type: string
+          description: Sample identifier to associate with the measurement.
+        sample_name:
+          type: string
+          description: Sample display name.
+        operator:
+          type: string
+          description: Operator name.
+        notes:
+          type: string
+          description: Optional measurement notes.
     MeasurementResult:
       type: object
       properties:
@@ -188,23 +199,12 @@ components:
               absorbance:
                 type: number
                 description: Absorbance value.
-    MeasurementRequest:
+    MeasurementListResponse:
       type: object
-      required:
-      - method
       properties:
-        method:
-          type: string
-          description: Name of the measurement method to use.
-        sample_id:
-          type: string
-          description: Sample identifier to associate with the measurement.
-        sample_name:
-          type: string
-          description: Sample display name.
-        operator:
-          type: string
-          description: Operator name.
-        notes:
-          type: string
-          description: Optional measurement notes.
+        total:
+          type: integer
+        measurements:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeasurementResult'
