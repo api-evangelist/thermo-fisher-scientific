@@ -50,17 +50,6 @@ paths:
           description: Invalid export parameters.
 components:
   schemas:
-    ExportResponse:
-      type: object
-      properties:
-        format:
-          type: string
-        count:
-          type: integer
-          description: Number of measurements exported.
-        data:
-          type: object
-          description: Exported measurement data (when format is json).
     ExportRequest:
       type: object
       properties:
@@ -83,3 +72,14 @@ components:
           items:
             type: string
           description: Specific measurement IDs to export.
+    ExportResponse:
+      type: object
+      properties:
+        format:
+          type: string
+        count:
+          type: integer
+          description: Number of measurements exported.
+        data:
+          type: object
+          description: Exported measurement data (when format is json).

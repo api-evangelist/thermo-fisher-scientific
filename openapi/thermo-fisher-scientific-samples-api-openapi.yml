@@ -108,6 +108,19 @@ paths:
           description: Sample not found.
 components:
   schemas:
+    SampleListResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        pagesize:
+          type: integer
+        samples:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sample'
     Sample:
       type: object
       properties:
@@ -137,19 +150,6 @@ components:
           type: string
           format: date
           description: Due date for sample results.
-    SampleListResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        page:
-          type: integer
-        pagesize:
-          type: integer
-        samples:
-          type: array
-          items:
-            $ref: '#/components/schemas/Sample'
   securitySchemes:
     bearerAuth:
       type: http
