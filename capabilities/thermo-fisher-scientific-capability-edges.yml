@@ -12,8 +12,20 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 3
+edge_count: 4
 edges:
+- tag: Results
+  spec_file: thermo-fisher-scientific-results-api-openapi.yml
+  capability_id: BC-4670.20
+  capability_id_l1: BC-4670
+  capability_name: Analytical Laboratory Operations
+  confidence: 0.75
+  evidence: GET /mobile/samples/{sampleId}/results getSampleResults Get Sample Results; POST /mobile/results
+    submitResults Submit Results; schema ResultSubmitRequest
+  reason: The operations record and retrieve analytical test results against samples in a Laboratory Information
+    Management System, which in a chemicals context realises QC analytical laboratory operations. Not
+    batch release (no disposition/COA operations) and not R&D data management (LIMS here is routine sample
+    testing). Moderate confidence because the surface is thin and generic across lab domains.
 - tag: Measurements
   spec_file: thermo-fisher-scientific-measurements-api-openapi.yml
   capability_id: BC-4670.20
@@ -25,19 +37,6 @@ edges:
     is the substance of analytical laboratory operations ("wet chemistry, chromatography, spectroscopy,
     and physical property testing"). Ambiguity remains as to whether the lab is QC or R&D, hence 0.7 rather
     than higher.
-- tag: Results
-  spec_file: thermo-fisher-scientific-results-api-openapi.yml
-  capability_id: BC-4670.20
-  capability_id_l1: BC-4670
-  capability_name: Analytical Laboratory Operations
-  confidence: 0.7
-  evidence: GET /mobile/samples/{sampleId}/results getSampleResults 'Get Sample Results'; POST /mobile/results
-    'Submit Results'; schemas Result, ResultSubmitRequest; 'SampleManager Laboratory Information Management
-    System'
-  reason: The operations record and retrieve analytical test results against laboratory samples in a LIMS
-    — i.e. QC laboratory operation. In the chemicals frame this is Analytical Laboratory Operations under
-    Chemical Quality Management rather than any generic data API; some residual ambiguity with cross-industry
-    Quality Control, hence moderate confidence.
 - tag: Samples
   spec_file: thermo-fisher-scientific-samples-api-openapi.yml
   capability_id: BC-2860.10
@@ -48,3 +47,14 @@ edges:
     Laboratory Information Management System ... access to sample data'''
   reason: Sample/specimen records in a LIMS are laboratory specimen and information management, matching
     Laboratory Services Management.
+- tag: Samples
+  spec_file: thermo-fisher-scientific-samples-api-openapi.yml
+  capability_id: BC-4670.20
+  capability_id_l1: BC-4670
+  capability_name: Analytical Laboratory Operations
+  confidence: 0.7
+  evidence: GET /mobile/samples getSamples; GET /mobile/samples/{sampleId} getSampleById; schemas SampleListResponse,
+    Sample
+  reason: Sample registration/browsing in a LIMS is the core of QC analytical laboratory operations. Evidence
+    is limited to read operations on sample records, so confidence is moderate; no narrower chemical capability
+    (specification, batch release) is named.
