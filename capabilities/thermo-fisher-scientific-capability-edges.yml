@@ -3,6 +3,7 @@ provider: Thermo Fisher Scientific
 generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
+- Chemicals
 - Healthcare Providers
 min_confidence: 0.7
 capability_model:
@@ -11,8 +12,32 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 3
 edges:
+- tag: Measurements
+  spec_file: thermo-fisher-scientific-measurements-api-openapi.yml
+  capability_id: BC-4670.20
+  capability_id_l1: BC-4670
+  capability_name: Analytical Laboratory Operations
+  confidence: 0.7
+  evidence: POST /api/measure  performMeasurement  Perform Measurement; GET /api/measurements  getMeasurements
+  reason: The operations execute and retrieve analytical measurements on a UV-Vis spectrophotometer, which
+    is the substance of analytical laboratory operations ("wet chemistry, chromatography, spectroscopy,
+    and physical property testing"). Ambiguity remains as to whether the lab is QC or R&D, hence 0.7 rather
+    than higher.
+- tag: Results
+  spec_file: thermo-fisher-scientific-results-api-openapi.yml
+  capability_id: BC-4670.20
+  capability_id_l1: BC-4670
+  capability_name: Analytical Laboratory Operations
+  confidence: 0.7
+  evidence: GET /mobile/samples/{sampleId}/results getSampleResults 'Get Sample Results'; POST /mobile/results
+    'Submit Results'; schemas Result, ResultSubmitRequest; 'SampleManager Laboratory Information Management
+    System'
+  reason: The operations record and retrieve analytical test results against laboratory samples in a LIMS
+    — i.e. QC laboratory operation. In the chemicals frame this is Analytical Laboratory Operations under
+    Chemical Quality Management rather than any generic data API; some residual ambiguity with cross-industry
+    Quality Control, hence moderate confidence.
 - tag: Samples
   spec_file: thermo-fisher-scientific-samples-api-openapi.yml
   capability_id: BC-2860.10
