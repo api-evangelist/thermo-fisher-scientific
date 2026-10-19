@@ -1,0 +1,48 @@
+edges:
+- partner_name: PubChem (data source)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://pubchem.ncbi.nlm.nih.gov/source/Thermo%20Fisher%20Scientific
+  category: PubChem chemical data depositor
+  chemistry_materials:
+    register: pubchem
+    listings:
+    - source: Thermo Fisher Scientific
+      categories:
+      - Chemical Vendors
+      legacy: false
+      live_substances: '78793'
+      live_bioassays: null
+  contract_reference:
+    register: PubChem data sources (pubchem.ncbi.nlm.nih.gov/rest/pug/sourcetable/all/JSON)
+    standard: PubChem depositor
+    spec_file: null
+    role: pubchem-depositor
+    registered_name: Thermo Fisher Scientific
+    register_id: Thermo Fisher Scientific
+    matched_domain: thermofisher.com
+    matched_by: domain+name-among-holders
+    domain_source: source URL
+    source_categories:
+    - Chemical Vendors
+    legacy_depositor: false
+    registered_country: United States
+    last_updated: 2025/05/14
+    signal_note: 'participation only: a depositor listing; ''Legacy Depositors'' = no longer depositing (flagged);
+      substance / bioassay counts are context, never counted'
+    detected_by: sweep-chemistry-materials.py
+    detected: '2026-10-19'
+  detected_by: sweep-chemistry-materials.py
+  first_seen: '2026-10-19'
+generated: '2026-10-19'
+method: searched
+source:
+- https://pubchem.ncbi.nlm.nih.gov/rest/pug/sourcetable/all/JSON
+- https://providers.optimade.org/providers.json
+checked:
+- https://providers.optimade.org/providers.json
+- https://pubchem.ncbi.nlm.nih.gov/rest/pug/sourcetable/all/JSON
